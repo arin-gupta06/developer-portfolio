@@ -771,10 +771,10 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {[
-              { num: '01–02', title: 'Prologue & Engineering Philosophy', spread: 0 },
-              { num: '03–04', title: 'The Design Principles & Monograph Index', spread: 1 },
-              { num: '05–06', title: 'Flagship Systems: Guardian AI & AlgoFight', spread: 2 },
-              { num: '07–08', title: '3D Dependency Engine & Technical Mastery', spread: 3 },
+              { num: '01–02', title: 'Prologue & Systems Engineering Philosophy', spread: 0 },
+              { num: '03–04', title: 'Design Principles & Monograph Index', spread: 1 },
+              { num: '05–06', title: 'Flagship Systems: Guardian AI & AetherOS', spread: 2 },
+              { num: '07–08', title: 'Adaptive Telemetry (IARIS) & Core Matrix', spread: 3 },
               { num: '09–10', title: 'Hackathon Honors & Community Impact', spread: 4 },
               { num: '11–12', title: 'Back Cover & Collaboration Gateway', spread: 5 },
             ].map((item) => (
@@ -868,7 +868,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
         </div>
       );
 
-    case 3: // Spread 3: Project 3 (CBCT 3D Analyzer)
+    case 3: // Spread 3: Project 3 (IARIS Adaptive Resource Engine)
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div
@@ -883,19 +883,19 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            SYSTEM ANALYSIS TOOL
+            ADAPTIVE SYSTEMS & TELEMETRY
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            CBCT 3D Visualizer
+            IARIS
           </h2>
           <p style={{ fontSize: '12px', color: '#38bdf8', fontWeight: 600 }}>
-            Interactive AST Codebase Topology Engine
+            Intent-Aware Adaptive Resource Intelligence System
           </p>
 
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            A WebGL and D3-based dependency graph generator that parses large JavaScript and TypeScript repositories to uncover
-            circular module imports, bloated dependencies, and architectural bottlenecks.
+            An intelligent resource telemetry platform that models running process workloads, computes cold-start predictions
+            via Similarity Matching, and applies Delta-Based Caching to minimize runtime monitoring overhead.
           </p>
 
           <div
@@ -907,10 +907,10 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
             }}
           >
             <div style={{ fontSize: '11px', fontWeight: 700, color: '#38bdf8', marginBottom: '4px' }}>
-              KEY METRIC
+              KEY ARCHITECTURE
             </div>
             <div style={{ fontSize: '13px', color: '#e2e8f0' }}>
-              Reduced code audit times by 40% in micro-frontend architectures.
+              Python • FastAPI • React Dashboards • EWMA Continuity Learning Engine
             </div>
           </div>
         </div>
@@ -1177,7 +1177,7 @@ function renderRightPage(spread: number) {
         </div>
       );
 
-    case 2: // Spread 2: Project 2 (AlgoFight Platform)
+    case 2: // Spread 2: Project 2 (AetherOS Platform)
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div
@@ -1192,19 +1192,19 @@ function renderRightPage(spread: number) {
               width: 'fit-content',
             }}
           >
-            REAL-TIME CODE JUDGE
+            ARCHITECTURAL INTELLIGENCE
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            AlgoFight Engine
+            AetherOS
           </h2>
           <p style={{ fontSize: '12px', color: '#818cf8', fontWeight: 600 }}>
-            Sandboxed Competitive Programming Runtime
+            Unified Architectural Modeling & System Simulation Platform
           </p>
 
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            A distributed code judging infrastructure built to execute arbitrary untrusted student and competitor code inside
-            ephemeral Docker micro-containers with strict cgroup limits on memory, time, and syscalls.
+            A unified architectural platform enabling real-time system modeling, architecture inference, failure simulation,
+            and governance validation powered by GitHub repo synchronization and Azure OpenAI.
           </p>
 
           <div
@@ -1216,15 +1216,15 @@ function renderRightPage(spread: number) {
             }}
           >
             <div style={{ fontSize: '11px', fontWeight: 700, color: '#818cf8', marginBottom: '4px' }}>
-              RELIABILITY METRIC
+              CORE CAPABILITY
             </div>
             <div style={{ fontSize: '13px', color: '#e2e8f0' }}>
-              Handled 10,000+ unverified code submissions with 0 container breakouts.
+              Live dependency analysis, failure simulation, and AI-driven scalability advisor.
             </div>
           </div>
 
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '6px' }}>
-            {['Go', 'Docker Sandboxing', 'gRPC', 'PostgreSQL', 'Redis'].map((t) => (
+            {['React Flow', 'Zustand', 'Node.js', 'Express', 'MongoDB', 'Azure OpenAI', 'WebSockets'].map((t) => (
               <span
                 key={t}
                 style={{

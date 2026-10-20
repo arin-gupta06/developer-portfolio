@@ -8,19 +8,19 @@ export default function AboutSection() {
     {
       icon: Briefcase,
       label: 'ROLE',
-      value: 'Full-Stack Developer',
+      value: 'Backend & Systems Engineer',
       href: null,
     },
     {
       icon: Award,
-      label: 'EXPERIENCE',
-      value: 'Building & Learning',
+      label: 'EDUCATION',
+      value: 'MITS Gwalior • B.Tech CS & Design (8.3 CGPA)',
       href: null,
     },
     {
       icon: MapPin,
-      label: 'LOCATION',
-      value: 'India',
+      label: 'LEADERSHIP',
+      value: 'GitHub MOU Coordinator & Open Source',
       href: null,
     },
     {
@@ -146,32 +146,39 @@ export default function AboutSection() {
             </span>
           </h2>
 
-          {/* Bio Paragraphs */}
-          <p
+          {/* Bio Text */}
+          <div
             style={{
-              fontSize: '16.5px',
-              lineHeight: 1.7,
-              color: '#94a3b8',
               maxWidth: '520px',
-              marginBottom: '16px',
+              marginBottom: '38px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '18px',
             }}
           >
-            I enjoy building products that don't just work — but make sense,
-            adapt to users, and evolve with their needs.
-          </p>
+            <p
+              style={{
+                fontSize: '16.5px',
+                lineHeight: 1.7,
+                color: '#cbd5e1',
+                margin: 0,
+              }}
+            >
+              I&apos;m a Computer Science &amp; Design student at{' '}
+              <strong style={{ color: '#ffffff', fontWeight: 600 }}>MITS Gwalior</strong>, specializing in backend architectures, event-driven systems, and applied AI.
+            </p>
 
-          <p
-            style={{
-              fontSize: '16.5px',
-              lineHeight: 1.7,
-              color: '#94a3b8',
-              maxWidth: '520px',
-              marginBottom: '40px',
-            }}
-          >
-            I love understanding the deeper structure of problems and designing
-            solutions that scale meaningfully.
-          </p>
+            <p
+              style={{
+                fontSize: '15px',
+                lineHeight: 1.7,
+                color: '#94a3b8',
+                margin: 0,
+              }}
+            >
+              My work focuses on building reliable, deterministic software — from system modeling platforms (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>AetherOS</strong>), to adaptive resource optimization engines (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>IARIS</strong>), and developer productivity tools (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>PDTK</strong>).
+            </p>
+          </div>
 
           {/* Quick Info Stack Cards */}
           <div

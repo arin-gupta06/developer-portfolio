@@ -1,4 +1,5 @@
 import React from 'react';
+import Preloader from '@/components/Preloader';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -16,6 +17,9 @@ export default function HomePage() {
         color: '#f8fafc',
       }}
     >
+      {/* Brand Integrated Preloader */}
+      <Preloader />
+
       {/* Top Fixed Navigation */}
       <Navbar activeTab="Home" />
 

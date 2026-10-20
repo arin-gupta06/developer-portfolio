@@ -96,6 +96,75 @@ a {
 .text-gradient-purple {
   background: linear-gradient(135deg, #818cf8 0%, #a855f7 50%, #c084fc 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 25px rgba(129, 140, 248, 0.4));
+}
+
+/* ============================================================ */
+/* RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS                     */
+/* ============================================================ */
+
+/* Desktop navigation vs Mobile hamburger */
+.desktop-nav {
+  display: flex;
+}
+
+.mobile-menu-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+  header#site-navbar {
+    padding: 16px 20px !important;
+  }
+}
+
+/* About Grid Stacking on Mobile */
+@media (max-width: 960px) {
+  .about-content-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+    padding: 100px 20px 60px 20px !important;
+  }
+}
+
+/* Projects Split Grid Stacking */
+@media (max-width: 960px) {
+  .projects-split-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+}
+
+/* Achievement Modal Grid Stacking */
+@media (max-width: 860px) {
+  .achievement-modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Magazine Responsive Constraints */
+@media (max-width: 768px) {
+  #open-magazine-spread {
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+}
+
+/* Touch targets and smooth overflow prevention */
+@media (max-width: 640px) {
+  section {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  footer {
+    padding: 48px 20px 32px 20px !important;
+  }
 }

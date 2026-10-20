@@ -116,13 +116,7 @@ export default function MagazineSection() {
         position: 'relative',
         minHeight: '110vh',
         width: '100vw',
-        backgroundColor: '#07080c',
-        backgroundImage: isOpen
-          ? `radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(129, 140, 248, 0.04) 0%, transparent 50%), url('/assets/workspace-table.png')`
-          : `radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(129, 140, 248, 0.04) 0%, transparent 50%), url('/assets/workspace-with-closed-book.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#090a0f',
         color: '#f8fafc',
         padding: '100px 32px 100px 32px',
         display: 'flex',
@@ -132,12 +126,34 @@ export default function MagazineSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Dark vignette overlay to emphasize the central desk and book */}
+      {/* Background Image Layer with Enhanced Brightness & Clarity */}
+      <div
+        id="magazine-bg-image"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: isOpen
+            ? `url('/assets/workspace-table.png')`
+            : `url('/assets/workspace-with-closed-book.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: 'brightness(1.22) contrast(1.05)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Atmospheric Vignette & Soft Gradient Overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 50% 50%, rgba(9, 10, 15, 0.55) 0%, rgba(7, 8, 12, 0.88) 100%)',
+          background: `
+            radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.08) 0%, transparent 65%),
+            radial-gradient(circle at 50% 50%, rgba(9, 10, 15, 0.15) 0%, rgba(7, 8, 12, 0.52) 100%),
+            linear-gradient(to bottom, rgba(9, 10, 15, 0.75) 0%, transparent 18%, transparent 82%, rgba(9, 10, 15, 0.75) 100%)
+          `,
+          zIndex: 2,
           pointerEvents: 'none',
         }}
       />

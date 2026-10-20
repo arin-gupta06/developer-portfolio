@@ -85,13 +85,15 @@ export default function AboutSection() {
 
       {/* Section Content */}
       <div
+        id="about-content-grid"
+        className="about-content-grid"
         style={{
           position: 'relative',
           zIndex: 10,
           maxWidth: '1440px',
           width: '100%',
           margin: '0 auto',
-          padding: '120px 64px 80px 64px',
+          padding: 'clamp(80px, 10vw, 120px) clamp(20px, 4vw, 64px) 80px clamp(20px, 4vw, 64px)',
           display: 'grid',
           gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 0.8fr)',
           gap: '64px',

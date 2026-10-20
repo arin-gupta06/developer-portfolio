@@ -94,6 +94,7 @@ export default function Footer() {
             {[
               { label: 'Home', href: '#home' },
               { label: 'About', href: '#about' },
+              { label: 'Projects', href: '#projects' },
               { label: 'Magazine', href: '#magazine' },
               { label: 'Achievements', href: '#achievements' },
             ].map((link) => (

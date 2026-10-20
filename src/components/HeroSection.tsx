@@ -77,13 +77,14 @@ export default function HeroSection() {
 
       {/* Hero Content Container */}
       <div
+        id="hero-content-container"
         style={{
           position: 'relative',
           zIndex: 10,
           maxWidth: '1440px',
           width: '100%',
           margin: '0 auto',
-          padding: '120px 64px 80px 64px',
+          padding: 'clamp(100px, 12vw, 140px) clamp(20px, 5vw, 64px) 80px clamp(20px, 5vw, 64px)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

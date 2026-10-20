@@ -15,7 +15,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'magazine', 'achievements'];
+      const sections = ['home', 'about', 'projects', 'magazine', 'achievements'];
       const scrollY = window.scrollY;
       setScrolled(scrollY > 40);
 
@@ -65,12 +65,14 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
   const navItems = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
+    { label: 'Projects', href: '#projects' },
     { label: 'Magazine Portfolio', href: '#magazine' },
     { label: 'Achievements', href: '#achievements' },
   ];
 
   return (
     <header
+      id="site-navbar"
       style={{
         position: 'fixed',
         top: 0,
@@ -131,8 +133,8 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
       {/* Desktop Navigation - Borderless, frameless, natural floating typography */}
       <nav
         id="desktop-nav"
+        className="desktop-nav"
         style={{
-          display: 'flex',
           alignItems: 'center',
           gap: '40px',
           background: 'none',
@@ -229,14 +231,17 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
         {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
           id="mobile-menu-toggle"
+          className="mobile-menu-toggle"
           style={{
-            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
             background: 'transparent',
             border: 'none',
             color: '#ffffff',
             cursor: 'pointer',
+            padding: '8px',
           }}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

@@ -136,9 +136,11 @@ export default function Footer() {
           {/* Socials & Back to Top */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <a
-              href="https://github.com"
+              href="https://github.com/arin-gupta06"
               target="_blank"
               rel="noreferrer"
+              aria-label="GitHub Profile"
+              title="GitHub Profile"
               style={{
                 width: '38px',
                 height: '38px',
@@ -165,9 +167,11 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/arin-gupta-2b94b032a/"
               target="_blank"
               rel="noreferrer"
+              aria-label="LinkedIn Profile"
+              title="LinkedIn Profile"
               style={{
                 width: '38px',
                 height: '38px',
@@ -195,6 +199,8 @@ export default function Footer() {
 
             <a
               href="mailto:aringupta2244@gmail.com"
+              aria-label="Email Arin Gupta"
+              title="Email aringupta2244@gmail.com"
               style={{
                 width: '38px',
                 height: '38px',

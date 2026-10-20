@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -273,10 +273,35 @@ export default function Footer() {
           <div>
             © {new Date().getFullYear()} Arin Gupta. Designed & built with obsessive attention to craft.
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>Crafted with</span>
-            <Heart size={13} color="#f43f5e" fill="#f43f5e" />
-            <span>in Next.js & React 19</span>
+          {/* Handwritten Signature: Arin Gupta */}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <span
+              style={{
+                fontFamily: "'Caveat', 'Dancing Script', cursive",
+                fontSize: '26px',
+                fontWeight: 600,
+                color: '#e2e8f0',
+                letterSpacing: '0.04em',
+                transform: 'rotate(-2deg)',
+                display: 'inline-block',
+                textShadow: '0 0 16px rgba(255, 255, 255, 0.12)',
+                userSelect: 'none',
+                transition: 'all 0.25s ease',
+                cursor: 'default',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#38bdf8';
+                e.currentTarget.style.textShadow = '0 0 20px rgba(56, 189, 248, 0.5)';
+                e.currentTarget.style.transform = 'rotate(-2deg) scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#e2e8f0';
+                e.currentTarget.style.textShadow = '0 0 16px rgba(255, 255, 255, 0.12)';
+                e.currentTarget.style.transform = 'rotate(-2deg) scale(1)';
+              }}
+            >
+              Arin Gupta
+            </span>
           </div>
         </div>
       </div>

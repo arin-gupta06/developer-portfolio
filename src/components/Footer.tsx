@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUp, Github, Linkedin, Mail, Lock } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -78,7 +80,7 @@ export default function Footer() {
               </span>
             </div>
             <p style={{ fontSize: '13px', color: '#64748b', margin: 0, maxWidth: '340px' }}>
-              Full-Stack Developer & Systems Enthusiast building fast, reliable, and aesthetically pleasing digital experiences.
+              Full-stack developer building clean, fast, and thoughtful web experiences.
             </p>
           </div>
 
@@ -140,6 +142,7 @@ export default function Footer() {
               href="https://github.com/arin-gupta06"
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent('social_link_click', { platform: 'github', location: 'footer' })}
               aria-label="GitHub Profile"
               title="GitHub Profile"
               style={{
@@ -171,6 +174,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/arin-gupta-2b94b032a/"
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent('social_link_click', { platform: 'linkedin', location: 'footer' })}
               aria-label="LinkedIn Profile"
               title="LinkedIn Profile"
               style={{
@@ -200,6 +204,7 @@ export default function Footer() {
 
             <a
               href="mailto:aringupta2244@gmail.com"
+              onClick={() => trackEvent('contact_email_click', { location: 'footer' })}
               aria-label="Email Arin Gupta"
               title="Email aringupta2244@gmail.com"
               style={{
@@ -271,8 +276,23 @@ export default function Footer() {
             color: '#64748b',
           }}
         >
-          <div>
-            © {new Date().getFullYear()} Arin Gupta. Designed & built with obsessive attention to craft.
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>© {new Date().getFullYear()} Arin Gupta. Designed &amp; built with care and curiosity.</span>
+            <Link
+              href="/analytics"
+              title="Private Analytics Hub (Ctrl + Shift + A)"
+              style={{
+                color: 'rgba(255, 255, 255, 0.2)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+                transition: 'color 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#818cf8')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.2)')}
+            >
+              <Lock size={11} />
+            </Link>
           </div>
           {/* Handwritten Signature: Arin Gupta */}
           <div style={{ display: 'flex', alignItems: 'center' }}>

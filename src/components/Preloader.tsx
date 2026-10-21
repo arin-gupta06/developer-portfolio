@@ -10,8 +10,8 @@ export default function Preloader() {
   const [typingStage, setTypingStage] = useState<'title' | 'subtext' | 'done'>('title');
   const [progress, setProgress] = useState(0);
 
-  const fullTitle = 'Arin Gupta Edition';
-  const fullSubtext = 'Welcomes you';
+  const fullTitle = 'Arin Gupta';
+  const fullSubtext = 'Welcome to my portfolio';
 
   useEffect(() => {
     // Prevent body scroll during preload
@@ -192,7 +192,7 @@ export default function Preloader() {
             opacity: 0.85,
           }}
         >
-          PORTFOLIO ARCHIVE
+          PORTFOLIO
         </div>
 
         {/* Main Text: "Arin Gupta Edition" with typing animation */}
@@ -310,7 +310,7 @@ export default function Preloader() {
             }}
           >
             <span style={{ color: progress === 100 ? '#4ade80' : '#64748b', transition: 'color 0.2s ease' }}>
-              {progress === 100 ? 'SYSTEM READY' : 'INITIALIZING'}
+              {progress === 100 ? 'READY' : 'LOADING'}
             </span>
             <span style={{ color: '#cbd5e1' }}>{progress}%</span>
           </div>

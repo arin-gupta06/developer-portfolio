@@ -155,7 +155,7 @@ export default function HeroSection() {
               flexDirection: 'column',
             }}
           >
-            <span>Architecting</span>
+            <span>Building</span>
             <span
               className="text-gradient-purple"
               style={{
@@ -163,9 +163,9 @@ export default function HeroSection() {
                 position: 'relative',
               }}
             >
-              Intelligent
+              Smart &amp; Clean
             </span>
-            <span>Systems</span>
+            <span>Software</span>
           </h1>
 
           {/* Subtitle */}
@@ -180,7 +180,7 @@ export default function HeroSection() {
               marginBottom: '36px',
             }}
           >
-            B.Tech Computer Science & Design developer specializing in backend architectures, adaptive AI systems, and deterministic developer tooling. Creator of AetherOS, IARIS, and PDTK.
+            I&apos;m a full-stack developer and CS &amp; Design student who loves building fast web apps, clean backend systems, and practical AI tools that feel great to use.
           </p>
 
           {/* Action Buttons */}
@@ -256,7 +256,7 @@ export default function HeroSection() {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              My Journey
+              About Me
             </Link>
           </div>
         </div>

@@ -1,24 +1,22 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import AnalyticsProvider from '@/components/AnalyticsProvider';
 
 export const metadata: Metadata = {
-  title: 'Arin Gupta — Full-Stack Developer & AI Systems Engineer',
+  title: 'Arin Gupta — Full-Stack Developer',
   description:
-    'Portfolio of Arin Gupta, Full-Stack Developer & Systems Engineer. Explore high-performance systems spanning Edge AI telemetry, AST code cartography, legal AI, and verified engineering credentials.',
+    "Portfolio of Arin Gupta, Full-Stack Developer. Explore projects in web development, practical AI tools, open-source work, and engineering milestones.",
   keywords: [
     'Arin Gupta',
     'Full-Stack Developer',
-    'AI Engineer',
-    'Systems Engineer',
-    'Software Architecture',
+    'AI Developer',
+    'Software Engineer',
     'React',
     'Next.js',
     'TypeScript',
     'Python',
     'FastAPI',
-    'Distributed Systems',
-    'AST Cartography',
-    'Edge AI',
+    'Node.js',
     'Portfolio',
   ],
   authors: [{ name: 'Arin Gupta', url: 'https://github.com/arin-gupta06' }],
@@ -32,16 +30,16 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://github.com/arin-gupta06',
-    title: 'Arin Gupta — Full-Stack Developer & AI Systems Engineer',
+    title: 'Arin Gupta — Full-Stack Developer',
     description:
-      'Explore verified engineering projects, real-time telemetry pipelines, interactive digital monographs, and national hackathon milestones.',
+      'Explore projects, interactive tools, and hackathon milestones built by Arin Gupta.',
     siteName: 'Arin Gupta Developer Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arin Gupta — Full-Stack Developer & AI Systems Engineer',
+    title: 'Arin Gupta — Full-Stack Developer',
     description:
-      'Full-stack developer architecting intelligent systems, AST cartography visualizers, and edge telemetry platforms.',
+      'Full-stack developer building clean web apps and practical software tools.',
     creator: '@arin_gupta',
   },
   robots: {
@@ -71,7 +69,7 @@ const jsonLd = {
       '@type': 'Person',
       '@id': 'https://github.com/arin-gupta06#person',
       name: 'Arin Gupta',
-      jobTitle: 'Full-Stack Developer & Systems Engineer',
+      jobTitle: 'Full-Stack Developer',
       url: 'https://github.com/arin-gupta06',
       sameAs: [
         'https://github.com/arin-gupta06',
@@ -80,7 +78,6 @@ const jsonLd = {
       knowsAbout: [
         'Full-Stack Web Development',
         'Artificial Intelligence',
-        'System Architecture',
         'React',
         'Next.js',
         'TypeScript',
@@ -96,7 +93,7 @@ const jsonLd = {
       url: 'https://arin-gupta.dev',
       name: 'Arin Gupta — Developer Portfolio',
       description:
-        'Full-stack developer building purposeful software systems with intelligent telemetry, AST cartography, and high-performance design.',
+        'Full-stack developer building clean, fast web apps and practical software tools.',
       publisher: {
         '@id': 'https://github.com/arin-gupta06#person',
       },
@@ -119,7 +116,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <AnalyticsProvider>{children}</AnalyticsProvider>
+      </body>
     </html>
   );
 }

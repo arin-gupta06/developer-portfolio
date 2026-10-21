@@ -13,6 +13,7 @@ import {
   Play,
 } from 'lucide-react';
 import AchievementModal, { MilestoneItem } from './AchievementModal';
+import { trackEvent } from '@/lib/analytics';
 
 export default function AchievementsSection() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -86,21 +87,21 @@ export default function AchievementsSection() {
       id: '01',
       category: 'HACKATHON FINALIST',
       title: 'VibeState’25 Hackathon',
-      subtitle: 'Top Finalist · Product Innovation',
+      subtitle: 'National Finalist · Emergency Safety App',
       org: 'Singularity • 2025',
       year: '2025',
       badge: 'National Finalist',
-      role: 'Team Lead & Full-Stack Architect',
+      role: 'Team Lead & Full-Stack Developer',
       duration: 'VibeState’25 Season',
       recognition: 'Certificate of Appreciation',
       organizedBy: 'Singularity (Aditya Batra & Shivansh Das)',
       accentColor: '#f59e0b',
       accentGlow: 'rgba(245, 158, 11, 0.25)',
       overview:
-        'Awarded the Certificate of Appreciation at VibeState’25 hosted by Singularity for architecting Guardian, a real-time emergency distress telemetry and triage dispatch system engineered during an intense 36-hour sprint. Pitched before national judges with an electric atmosphere recognition.',
+        'Built Guardian during the 36-hour VibeState’25 hackathon—an emergency safety app that detects distress signals and shares live location with responders in seconds. Pitched to national judges and earned the Certificate of Appreciation.',
       tech: ['React Native', 'FastAPI', 'Edge AI', 'WebSockets', 'PyTorch'],
       impact:
-        'Demonstrated real-time emergency telemetry pipeline and rapid triage response before national industry panel.',
+        'Demonstrated fast emergency alerts and location sharing live before the national judging panel.',
       slides: [
         {
           type: 'document',
@@ -116,7 +117,7 @@ export default function AchievementsSection() {
       id: '02',
       category: 'SOFTWARE ENGINEERING INTERNSHIP',
       title: 'ByteEdu Learning Platform',
-      subtitle: 'Software Developer Intern · Chronos Initiative',
+      subtitle: 'Software Developer Intern · Chronos Project',
       org: 'ByteEdu Tech Learning • 2026',
       year: '2026',
       badge: 'SWE Intern',
@@ -127,10 +128,10 @@ export default function AchievementsSection() {
       accentColor: '#38bdf8',
       accentGlow: 'rgba(56, 189, 248, 0.25)',
       overview:
-        'Appointed as Software Developer Intern at ByteEdu Learning Platform on March 6, 2026, in recognition of active contributions to the Chronos Open Source Organization under the ByteEdu ecosystem. Entrusted with building and maintaining open-source repositories, managing developer workflows, and reviewing contributor pull requests.',
+        'Appointed as Software Developer Intern at ByteEdu Learning Platform on March 6, 2026. Working with the Chronos open-source community, maintaining public repositories, and reviewing contributor pull requests.',
       tech: ['TypeScript', 'React', 'Node.js', 'REST APIs', 'Open Source', 'GitHub Actions'],
       impact:
-        'Maintaining Chronos open-source ecosystem, enforcing PR quality benchmarks, and guiding developer workflows.',
+        'Helping maintain open-source projects and reviewing contributor pull requests.',
       slides: [
         {
           type: 'document',
@@ -146,7 +147,7 @@ export default function AchievementsSection() {
       id: '03',
       category: 'ARTIFICIAL INTELLIGENCE & RESEARCH',
       title: 'Decode Labs Tech',
-      subtitle: 'Artificial Intelligence (AI) Intern · LOR Awarded',
+      subtitle: 'AI Intern · Recommendation Letter Awarded',
       org: 'Decode Labs • 2026',
       year: '2026',
       badge: 'AI Intern',
@@ -157,10 +158,10 @@ export default function AchievementsSection() {
       accentColor: '#6366f1',
       accentGlow: 'rgba(99, 102, 241, 0.25)',
       overview:
-        'Completed an intensive Artificial Intelligence (AI) internship at Decode Labs from 3 June 2026 to 3 July 2026. Operated within the AI vertical architecting deep learning pipelines, translating theoretical concepts into robust production-ready models, and earned a formal executive Letter of Recommendation on 12 July 2026 commended for exceptional performance.',
+        'Completed an AI internship at Decode Labs from June to July 2026. Built machine learning pipelines, deployed practical models, and received a formal Letter of Recommendation for strong performance.',
       tech: ['Python', 'FastAPI', 'Neural Models', 'Data Pipelines', 'API Benchmarking'],
       impact:
-        'Shipped production AI vertical milestones and awarded formal Letter of Recommendation commending technical competence.',
+        'Built machine learning pipelines and awarded a formal Letter of Recommendation for excellent work.',
       slides: [
         {
           type: 'document',
@@ -193,10 +194,10 @@ export default function AchievementsSection() {
       accentColor: '#10b981',
       accentGlow: 'rgba(16, 185, 129, 0.25)',
       overview:
-        'Selected as an official open-source contributor for Nexus Spring of Code 2026 (NSoC ’26, starting April 15, 2026). Collaborating across active public codebases, addressing issues, shipping pull requests, and building software with mentor guidance on Discord and GitHub.',
+        'Selected as an official open-source contributor for Nexus Spring of Code 2026. Collaborating on active public codebases, fixing issues, and shipping pull requests with mentor guidance.',
       tech: ['Open Source', 'Git & GitHub', 'Python', 'TypeScript', 'CI/CD', 'Code Review'],
       impact:
-        'Selected through competitive open-source applicant pool to contribute validated code and feature enhancements.',
+        'Selected to contribute bug fixes and new features to active open-source repositories.',
       slides: [
         {
           type: 'document',
@@ -218,7 +219,7 @@ export default function AchievementsSection() {
       id: '05',
       category: 'GLOBAL OPEN SOURCE PROGRAM',
       title: 'GirlScript Summer of Code (GSSoC)',
-      subtitle: 'Open Source Contributor · Certificate of Participation',
+      subtitle: 'Open Source Contributor · Certificate Awarded',
       org: 'GirlScript Foundation • 2026',
       year: '2026',
       badge: 'GSSoC Contributor',
@@ -229,10 +230,10 @@ export default function AchievementsSection() {
       accentColor: '#8b5cf6',
       accentGlow: 'rgba(139, 92, 246, 0.25)',
       overview:
-        'Awarded the official Certificate of Participation for contributions to GirlScript Summer of Code 2026 (GSSoC 2026), hosted by GirlScript Foundation and GS Labs. Recognized for curiosity and commitment to open source, collaboration across community repositories, and authoring impactful pull requests.',
+        'Earned the official Certificate of Participation for contributions to GirlScript Summer of Code 2026. Collaborated with maintainers across open-source repositories and authored useful pull requests.',
       tech: ['Open Source', 'Git & GitHub', 'JavaScript', 'React', 'Problem Solving', 'Peer Review'],
       impact:
-        'Contributed code improvements and feature patches to open-source projects hosted under GirlScript Foundation.',
+        'Contributed code fixes and improvements to community open-source projects.',
       slides: [
         {
           type: 'document',
@@ -364,7 +365,7 @@ export default function AchievementsSection() {
             }}
           >
             <Sparkles size={13} />
-            <span>HONORS & MILESTONES</span>
+            <span>MILESTONES &amp; RECOGNITION</span>
           </div>
 
           <h2
@@ -377,7 +378,7 @@ export default function AchievementsSection() {
               lineHeight: 1.15,
             }}
           >
-            Recognized for{' '}
+            Milestones Along the{' '}
             <span
               style={{
                 background: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 40%, #e2e8f0 100%)',
@@ -385,7 +386,7 @@ export default function AchievementsSection() {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Engineering Impact
+              Way
             </span>
           </h2>
         </div>
@@ -441,54 +442,13 @@ export default function AchievementsSection() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             flexWrap: 'wrap',
             gap: '16px',
             marginBottom: '28px',
             padding: '0 8px',
           }}
         >
-          {/* Dynamic Auto-sliding Status Badge */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              padding: '8px 16px',
-              borderRadius: '9999px',
-              backgroundColor: isCarouselHovered
-                ? 'rgba(245, 158, 11, 0.1)'
-                : 'rgba(16, 185, 129, 0.1)',
-              border: `1px solid ${
-                isCarouselHovered ? 'rgba(245, 158, 11, 0.3)' : 'rgba(16, 185, 129, 0.25)'
-              }`,
-              fontSize: '12px',
-              fontWeight: 600,
-              fontFamily: 'Space Grotesk, sans-serif',
-              transition: 'all 0.3s ease',
-            }}
-          >
-            <span
-              style={{
-                width: '7px',
-                height: '7px',
-                borderRadius: '50%',
-                backgroundColor: isCarouselHovered ? '#f59e0b' : '#10b981',
-                boxShadow: isCarouselHovered
-                  ? '0 0 10px #f59e0b'
-                  : '0 0 10px #10b981',
-              }}
-            />
-            <span style={{ color: isCarouselHovered ? '#fbbf24' : '#34d399' }}>
-              {isCarouselHovered ? 'Paused on Hover' : 'Dynamic Auto-Slider Active'}
-            </span>
-            <span style={{ color: '#64748b', fontSize: '11px' }}>
-              {isCarouselHovered
-                ? '• Click card to inspect credentials'
-                : '• Hover any card to freeze'}
-            </span>
-          </div>
-
           {/* Right: Milestone Dots & Navigation Arrows */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             {/* Direct Milestone Indicator Pills */}
@@ -647,11 +607,15 @@ export default function AchievementsSection() {
                   key={`${item.id}-${idx}`}
                   role="button"
                   tabIndex={0}
-                  onClick={() => setSelectedMilestone(item)}
+                  onClick={() => {
+                    setSelectedMilestone(item);
+                    trackEvent('credential_view', { milestoneId: item.id, title: item.title, category: item.category });
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       setSelectedMilestone(item);
+                      trackEvent('credential_view', { milestoneId: item.id, title: item.title, category: item.category });
                     }
                   }}
                   onMouseEnter={() => setHoveredIdx(idx)}

@@ -8,7 +8,7 @@ export default function AboutSection() {
     {
       icon: Briefcase,
       label: 'ROLE',
-      value: 'Backend & Systems Engineer',
+      value: 'Full-Stack Developer',
       href: null,
     },
     {
@@ -20,7 +20,7 @@ export default function AboutSection() {
     {
       icon: MapPin,
       label: 'LEADERSHIP',
-      value: 'GitHub MOU Coordinator & Open Source',
+      value: 'GitHub Campus Coordinator & Open Source',
       href: null,
     },
     {
@@ -135,7 +135,7 @@ export default function AboutSection() {
               marginBottom: '28px',
             }}
           >
-            The human <br />
+            The person <br />
             behind the{' '}
             <span
               className="text-gradient-purple"
@@ -166,8 +166,8 @@ export default function AboutSection() {
                 margin: 0,
               }}
             >
-              I&apos;m a Computer Science &amp; Design student at{' '}
-              <strong style={{ color: '#ffffff', fontWeight: 600 }}>MITS Gwalior</strong>, specializing in backend architectures, event-driven systems, and applied AI.
+              I&apos;m currently studying Computer Science &amp; Design at{' '}
+              <strong style={{ color: '#ffffff', fontWeight: 600 }}>MITS Gwalior</strong>. I love turning ideas into real, working products—from clean backend APIs to smooth, responsive user interfaces.
             </p>
 
             <p
@@ -178,7 +178,7 @@ export default function AboutSection() {
                 margin: 0,
               }}
             >
-              My work focuses on building reliable, deterministic software — from system modeling platforms (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>AetherOS</strong>), to adaptive resource optimization engines (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>IARIS</strong>), and developer productivity tools (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>PDTK</strong>).
+              Most of my work centers around solving practical everyday problems: like emergency alerts (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>GuardianAI</strong>), visual architecture design (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>AetherOS</strong>), and open-source civic tools (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>ChronOS</strong>).
             </p>
           </div>
 
@@ -401,8 +401,7 @@ export default function AboutSection() {
                 marginBottom: '28px',
               }}
             >
-              Growing as a full-stack developer with a passion for clean
-              architecture, performance and impact.
+              A curious developer focused on clean code, good design, and building things people find genuinely useful.
             </p>
 
             {/* Bottom Status Chips */}
@@ -413,7 +412,7 @@ export default function AboutSection() {
                 gap: '10px',
               }}
             >
-              {/* Chip 1: Growing Every Day */}
+              {/* Chip 1: Always Learning */}
               <div
                 style={{
                   display: 'inline-flex',
@@ -429,7 +428,7 @@ export default function AboutSection() {
                 }}
               >
                 <Clock size={14} style={{ color: '#f59e0b' }} />
-                <span>Growing Every Day</span>
+                <span>Always Learning</span>
               </div>
 
               {/* Chip 2: Available for Work */}

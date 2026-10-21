@@ -15,6 +15,7 @@ import {
   Shield,
   FileCode2,
 } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export interface ProjectItem {
   id: string;
@@ -40,17 +41,17 @@ export default function ProjectsSection() {
     {
       id: '01',
       title: 'GuardianAI Platform',
-      tagline: 'Emergency Distress Telemetry & Rapid Triage Dispatch Engine',
-      category: 'EDGE AI & SAFETY SYSTEMS',
-      statusBadge: 'VibeState’25 National Finalist',
+      tagline: 'Quick emergency distress alerts and instant location sharing',
+      category: 'SAFETY & SMART APPS',
+      statusBadge: 'VibeState’25 Finalist',
       accentColor: '#f59e0b',
       accentGlow: 'rgba(245, 158, 11, 0.25)',
       overview:
-        'Engineered an emergency telemetry platform during the 36-hour VibeState’25 national hackathon. Combines edge device sensor telemetry with low-latency dispatch coordination to deliver instant panic triage before emergency responders.',
+        'Built during the 36-hour VibeState’25 hackathon. Uses phone sensor triggers and fast alerts to notify emergency contacts and responders in seconds.',
       problemSolved:
-        'Traditional distress apps rely on manual form submissions that fail during active panic events. GuardianAI activates instantaneous sensor telemetry, audio triggers, and geographic dispatch within milliseconds.',
+        'In an emergency, people rarely have time to unlock their phone and fill out forms. GuardianAI triggers automatic alerts and location sharing with a single tap or gesture.',
       keyHighlight:
-        'Demonstrated sub-200ms emergency distress pipeline and rapid triage simulation before national jury panel.',
+        'Delivered emergency distress alerts with sub-200ms response time during our live hackathon demo.',
       tech: ['React', 'FastAPI', 'WebSockets', 'REST APIs', 'Geolocation', 'Node.js'],
       liveUrl: 'https://guardian-ai-one.vercel.app',
       githubUrl: 'https://github.com/arin-gupta06/GuardianAI-Arin',
@@ -58,17 +59,17 @@ export default function ProjectsSection() {
     {
       id: '02',
       title: 'ChronOS & AI RTI Generator',
-      tagline: 'Open-Source Civic Intelligence & Legal Grievance Drafting Engine',
-      category: 'CIVIC TECH & OPEN SOURCE',
-      statusBadge: 'ByteEdu Chronos Ecosystem',
+      tagline: 'Helping citizens draft formal RTI requests and civic petitions with ease',
+      category: 'CIVIC TECH & TOOLS',
+      statusBadge: 'Open Source',
       accentColor: '#38bdf8',
       accentGlow: 'rgba(56, 189, 248, 0.25)',
       overview:
-        'An open-source legal AI framework developed within the Chronos ecosystem to empower citizens in drafting structured Right to Information (RTI) petitions, municipal grievances, and administrative appeals automatically.',
+        'An open-source tool that turns everyday plain-language complaints into properly formatted RTI requests and official civic petitions.',
       problemSolved:
-        'Citizens face intimidating procedural friction and legal jargon when seeking public accountability. ChronOS translates plain-language grievances into legally formatted statutory RTI documentation.',
+        'Official paperwork and legal wording can be intimidating. ChronOS turns simple everyday English into ready-to-submit formal letters.',
       keyHighlight:
-        'Powers structured citizen RTI drafts, automated statutory format validation, and open-source civic repository maintenance.',
+        'Generates clean, correctly formatted RTI drafts and appeals in just a few clicks.',
       tech: ['Python', 'JavaScript', 'FastAPI', 'NLP', 'Open Source', 'REST APIs'],
       liveUrl: 'https://chronallab-site.vercel.app/',
       githubUrl: 'https://github.com/arin-gupta06/ChronOS-Arin',
@@ -76,17 +77,17 @@ export default function ProjectsSection() {
     {
       id: '03',
       title: 'CodeBase Cartographic Tool (CBCT)',
-      tagline: 'Distributed Repository Architecture Mapping & Visual AST Cartography',
-      category: 'DEVELOPER TOOLING & AST',
-      statusBadge: 'LakeCity Hackathon Project',
+      tagline: 'Visual maps that turn messy codebases into clear, interactive diagrams',
+      category: 'DEVELOPER TOOLS',
+      statusBadge: 'Hackathon Project',
       accentColor: '#10b981',
       accentGlow: 'rgba(16, 185, 129, 0.25)',
       overview:
-        'Architected for the LakeCity Hackathon, CBCT parses complex distributed software repositories into interactive architectural node graphs, tracing imports, circular dependencies, and module coupling in real time.',
+        'Built for the LakeCity Hackathon. CBCT scans project repositories and automatically maps out how files, components, and libraries link together.',
       problemSolved:
-        'Onboarding developers onto unfamiliar codebases takes weeks of manual file browsing. CBCT generates dynamic architectural dependency cartography directly from AST parsing in minutes.',
+        'Exploring an unfamiliar codebase usually takes days of digging through folders. CBCT gives you an instant bird\'s-eye view of how everything connects.',
       keyHighlight:
-        'Parsed cross-module dependency trees and visualized deep architectural coupling across enterprise repositories.',
+        'Scans imports across entire repositories to generate interactive visual dependency trees.',
       tech: ['JavaScript', 'React', 'AST Parsing', 'Graph Visualization', 'Git Analysis'],
       liveUrl: 'https://cbct-code-base-cartographic-tool-cl.vercel.app',
       githubUrl: 'https://github.com/arin-gupta06/CBCT-Code-Base-Cartographic-Tool-Arin',
@@ -94,17 +95,17 @@ export default function ProjectsSection() {
     {
       id: '04',
       title: 'Smart Resume & Job-Fit Analyzer',
-      tagline: 'Semantic Resume Parsing & ATS Contextual Alignment Scoring Engine',
-      category: 'AI / ML & NLP',
-      statusBadge: 'AI Intelligence Project',
+      tagline: 'Intelligent resume feedback that focuses on real skills, not just keywords',
+      category: 'AI & CAREER TOOLS',
+      statusBadge: 'AI Project',
       accentColor: '#6366f1',
       accentGlow: 'rgba(99, 102, 241, 0.25)',
       overview:
-        'An intelligent candidate-job alignment engine utilizing semantic natural language embeddings to evaluate resumes against target job descriptions, computing contextual similarity, skill gaps, and ATS pass scores beyond superficial keyword counting.',
+        'An AI-powered tool that compares your resume to any job description, identifying genuine skill matches and providing practical tips to improve.',
       problemSolved:
-        'Traditional keyword-matching ATS systems reject qualified candidates based on minor phrasing differences. This engine evaluates contextual semantic embeddings to capture true technical proficiency.',
+        'Traditional resume scanners often reject good candidates because of minor phrasing differences. This tool understands the meaning behind your experience.',
       keyHighlight:
-        'Calculated contextual cosine embeddings, identified actionable skill deficits, and generated personalized ATS optimization advice.',
+        'Calculates meaningful match scores and suggests clear, actionable ways to strengthen your resume.',
       tech: ['Python', 'NLP Embeddings', 'Cosine Similarity', 'Streamlit', 'Text Parsing'],
       liveUrl: 'https://smart-resume-job-fit-analyzer-a.vercel.app',
       githubUrl: 'https://github.com/arin-gupta06/Smart-Resume---Job-Fit-Analyzer-A',
@@ -112,17 +113,17 @@ export default function ProjectsSection() {
     {
       id: '05',
       title: 'GearGuard Maintenance Tracker',
-      tagline: 'Industrial Asset & Preventive Maintenance Lifecycle System',
-      category: 'FULL-STACK & SYSTEMS',
-      statusBadge: 'Odoo Hackathon Platform',
+      tagline: 'Equipment tracking and automated reminders to keep machines running smoothly',
+      category: 'FULL-STACK APP',
+      statusBadge: 'Odoo Hackathon',
       accentColor: '#8b5cf6',
       accentGlow: 'rgba(139, 92, 246, 0.25)',
       overview:
-        'Built during the Odoo Hackathon, GearGuard is an equipment telemetry and preventive maintenance scheduling tracker engineered to eliminate unplanned industrial downtime through automated service logging and wear-cycle forecasting.',
+        'Built during the Odoo Hackathon. Tracks machinery health, logs service history, and schedules preventive maintenance before problems occur.',
       problemSolved:
-        'Factory machinery often experiences catastrophic breakdowns due to disjointed paper logs and uncoordinated maintenance intervals. GearGuard automates component lifecycle scheduling.',
+        'Workshops often suffer unexpected breakdowns because maintenance is tracked on messy paper sheets or forgotten spreadsheets.',
       keyHighlight:
-        'Designed component lifecycle state machine, real-time service interval tracking, and automated preventive maintenance tickets.',
+        'Tracks machine usage cycles and sends automated service alerts before equipment breaks down.',
       tech: ['TypeScript', 'React', 'Node.js', 'State Machines', 'REST API', 'Analytics'],
       githubUrl: 'https://github.com/arin-gupta06/GearGuard-The-Ultimate-Maintenance-Tracker',
     },
@@ -241,7 +242,7 @@ export default function ProjectsSection() {
             }}
           >
             <Sparkles size={13} />
-            <span>SOFTWARE ARCHITECTURE & LABS</span>
+            <span>WHAT I&apos;VE BUILT</span>
           </div>
 
           <h2
@@ -264,7 +265,7 @@ export default function ProjectsSection() {
                 display: 'inline-block',
               }}
             >
-              Engineering Projects
+              Projects
             </span>
           </h2>
         </div>
@@ -483,7 +484,7 @@ export default function ProjectsSection() {
                           fontFamily: 'Space Grotesk, sans-serif',
                         }}
                       >
-                        {isTop ? 'Active Dossier' : 'Bring to Front'}
+                        {isTop ? 'Active Project' : 'Click to View'}
                         {isTop && <ArrowUpRight size={13} />}
                       </span>
                     </div>
@@ -511,7 +512,10 @@ export default function ProjectsSection() {
                   return (
                     <button
                       key={p.id}
-                      onClick={() => setActiveIndex(idx)}
+                      onClick={() => {
+                        setActiveIndex(idx);
+                        trackEvent('project_view', { projectId: p.id, title: p.title });
+                      }}
                       aria-label={`Switch to project ${p.title}`}
                       style={{
                         height: '24px',
@@ -634,7 +638,7 @@ export default function ProjectsSection() {
                     {activeProject.category}
                   </span>
                   <span style={{ color: '#475569' }}>•</span>
-                  <span style={{ fontSize: '11px', color: '#64748b' }}>Live Intelligence Dossier</span>
+                  <span style={{ fontSize: '11px', color: '#64748b' }}>Project Details</span>
                 </div>
 
                 <span
@@ -700,7 +704,7 @@ export default function ProjectsSection() {
                     fontFamily: 'Space Grotesk, sans-serif',
                   }}
                 >
-                  The Engineering Challenge
+                  Why I Built This
                 </div>
                 <p style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.6 }}>
                   {activeProject.problemSolved}
@@ -725,7 +729,7 @@ export default function ProjectsSection() {
                   style={{ color: activeProject.accentColor, marginTop: '2px', flexShrink: 0 }}
                 />
                 <span style={{ fontSize: '13px', color: '#f1f5f9', lineHeight: 1.5 }}>
-                  <strong style={{ color: '#ffffff' }}>Architectural Breakthrough:</strong>{' '}
+                  <strong style={{ color: '#ffffff' }}>Key Highlight:</strong>{' '}
                   {activeProject.keyHighlight}
                 </span>
               </div>
@@ -743,7 +747,7 @@ export default function ProjectsSection() {
                     fontFamily: 'Space Grotesk, sans-serif',
                   }}
                 >
-                  Engineered With
+                  Built With
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {activeProject.tech.map((t) => (
@@ -782,6 +786,13 @@ export default function ProjectsSection() {
                   href={activeProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent('project_demo_open', {
+                      projectId: activeProject.id,
+                      title: activeProject.title,
+                      url: activeProject.liveUrl,
+                    })
+                  }
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -815,6 +826,13 @@ export default function ProjectsSection() {
                 href={activeProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent('project_code_open', {
+                    projectId: activeProject.id,
+                    title: activeProject.title,
+                    url: activeProject.githubUrl,
+                  })
+                }
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

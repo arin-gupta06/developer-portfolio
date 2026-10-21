@@ -315,7 +315,7 @@ export default function AchievementModal({ milestone, onClose }: AchievementModa
                 }}
               >
                 <FileText size={14} style={{ color: milestone.accentColor }} />
-                {activeSlide?.title || 'Credential Preview'}
+                {activeSlide?.title || 'Document Preview'}
               </span>
 
               {slides.length > 1 && (
@@ -585,7 +585,7 @@ export default function AchievementModal({ milestone, onClose }: AchievementModa
                   style={{ color: milestone.accentColor, marginTop: '2px', flexShrink: 0 }}
                 />
                 <span style={{ fontSize: '12.5px', color: '#e2e8f0', lineHeight: 1.5 }}>
-                  <strong style={{ color: '#ffffff' }}>Key Accomplishment:</strong> {milestone.impact}
+                  <strong style={{ color: '#ffffff' }}>Key Highlight:</strong> {milestone.impact}
                 </span>
               </div>
 

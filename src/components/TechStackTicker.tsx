@@ -41,7 +41,7 @@ export default function TechStackTicker() {
     { name: 'Git & GitHub', category: 'DevOps & Tools', color: '#f05032' },
     { name: 'Docker', category: 'DevOps & Tools', color: '#2496ed' },
     { name: 'Linux / CLI', category: 'DevOps & Tools', color: '#eab308' },
-    { name: 'AST Code Parsing', category: 'DevOps & Tools', color: '#10b981' },
+    { name: 'Code Analysis (AST)', category: 'DevOps & Tools', color: '#10b981' },
   ];
 
   // Duplicate for seamless infinite loop
@@ -149,11 +149,7 @@ export default function TechStackTicker() {
           }}
         >
           <Sparkles size={12} style={{ color: '#38bdf8' }} />
-          <span>Core Engineering Stack & Tooling</span>
-          <span style={{ color: '#334155' }}>•</span>
-          <span style={{ color: isPaused ? '#f59e0b' : '#334155', transition: 'color 0.2s' }}>
-            {isPaused ? 'Paused on Hover' : 'Auto-Streaming'}
-          </span>
+          <span>Tools &amp; Technologies I Work With</span>
         </span>
       </div>
 

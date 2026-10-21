@@ -24,6 +24,7 @@ import {
   ArrowUpRight,
   Eye,
 } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export default function MagazineSection() {
   // Book open / closed state
@@ -83,6 +84,7 @@ export default function MagazineSection() {
       fromSpread: from,
       toSpread: to,
     });
+    trackEvent('magazine_spread_turn', { fromSpread: from, toSpread: to, direction });
 
     setTimeout(() => {
       setCurrentSpread(to);
@@ -97,6 +99,7 @@ export default function MagazineSection() {
 
   // Open book handler
   const handleOpenBook = () => {
+    trackEvent('magazine_open');
     setIsOpeningTransition(true);
     setTimeout(() => {
       setIsOpen(true);
@@ -149,9 +152,8 @@ export default function MagazineSection() {
           position: 'absolute',
           inset: 0,
           background: `
-            radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.08) 0%, transparent 65%),
-            radial-gradient(circle at 50% 50%, rgba(9, 10, 15, 0.15) 0%, rgba(7, 8, 12, 0.52) 100%),
-            linear-gradient(to bottom, rgba(9, 10, 15, 0.75) 0%, transparent 18%, transparent 82%, rgba(9, 10, 15, 0.75) 100%)
+            radial-gradient(circle at 50% 50%, rgba(9, 10, 15, 0.2) 0%, rgba(7, 8, 12, 0.6) 100%),
+            linear-gradient(to bottom, rgba(9, 10, 15, 0.85) 0%, rgba(9, 10, 15, 0.4) 22%, transparent 36%, transparent 80%, rgba(9, 10, 15, 0.85) 100%)
           `,
           zIndex: 2,
           pointerEvents: 'none',
@@ -191,7 +193,7 @@ export default function MagazineSection() {
           }}
         >
           <BookOpen size={13} />
-          <span>PORTFOLIO MONOGRAPH • VOL. 01</span>
+          <span>PORTFOLIO MAGAZINE</span>
         </div>
 
         <h2
@@ -200,23 +202,26 @@ export default function MagazineSection() {
             fontWeight: 800,
             color: '#ffffff',
             letterSpacing: '-0.025em',
-            marginBottom: '10px',
+            marginBottom: '12px',
+            textShadow: '0 4px 20px rgba(0, 0, 0, 0.85), 0 2px 6px rgba(0, 0, 0, 0.6)',
           }}
         >
-          The Editorial Magazine
+          The Developer Magazine
         </h2>
 
         <p
+          id="magazine-subtitle"
           style={{
             fontSize: '15px',
-            color: '#94a3b8',
+            color: !isOpen ? '#090a0f' : '#94a3b8',
             maxWidth: '580px',
             lineHeight: 1.6,
+            fontWeight: !isOpen ? 600 : 400,
           }}
         >
           {isOpen
-            ? 'Flip through the dual spreads to explore system architectures, core engineering philosophies, and project breakdowns.'
-            : 'Click the publication to open and explore the 10-page monograph.'}
+            ? 'Flip through the pages to read about how I build software, my background, and project highlights.'
+            : 'Click the book on the desk to flip through the interactive magazine.'}
         </p>
 
         {/* When Open: Controls and Category Tabs */}
@@ -263,7 +268,7 @@ export default function MagazineSection() {
               }}
             >
               <RotateCcw size={13} />
-              <span>Close to Desk</span>
+              <span>Close Book</span>
             </button>
 
             {/* Navigation Tabs */}
@@ -428,7 +433,7 @@ export default function MagazineSection() {
               }}
             >
               <Sparkles size={15} />
-              <span>CLICK TO OPEN MONOGRAPH</span>
+              <span>CLICK TO OPEN MAGAZINE</span>
               <BookOpen size={15} />
             </div>
           </div>
@@ -613,7 +618,7 @@ export default function MagazineSection() {
                     fontFamily: 'Space Grotesk, sans-serif',
                   }}
                 >
-                  ENGINEERING MONOGRAPH
+                  DEVELOPER MAGAZINE
                 </span>
               </div>
 
@@ -731,18 +736,16 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            PROLOGUE & VISION
+            WELCOME
           </div>
           <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Engineering with Obsessive Craft
+            Building with Care &amp; Curiosity
           </h2>
           <p style={{ fontSize: '13.5px', color: '#cbd5e1', lineHeight: 1.7 }}>
-            In an era where digital noise proliferates, this monograph stands as a dedicated physical artifact of code,
-            systems architecture, and user intuition.
+            Welcome to my portfolio! I believe great software should feel fast, look clean, and make life a little simpler.
           </p>
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            Every application I design is anchored in deep system ergonomics — balancing raw algorithmic speed with
-            tactile aesthetic cohesion.
+            Whether it&apos;s building a quick utility tool or designing a full-stack web platform, I focus on readable code, thoughtful design, and software that genuinely works well.
           </p>
 
           <div
@@ -758,7 +761,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               Arin Gupta
             </div>
             <div style={{ fontSize: '11px', color: '#64748b' }}>
-              Full-Stack Developer • Platform Architect
+              Full-Stack Developer &amp; Problem Solver
             </div>
           </div>
         </div>
@@ -778,7 +781,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
                 marginBottom: '6px',
               }}
             >
-              INDEX OF WORKS
+              OVERVIEW
             </div>
             <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff' }}>
               Table of Contents
@@ -787,12 +790,12 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {[
-              { num: '01–02', title: 'Prologue & Systems Engineering Philosophy', spread: 0 },
-              { num: '03–04', title: 'Design Principles & Monograph Index', spread: 1 },
-              { num: '05–06', title: 'Flagship Systems: Guardian AI & AetherOS', spread: 2 },
-              { num: '07–08', title: 'Adaptive Telemetry (IARIS) & Core Matrix', spread: 3 },
-              { num: '09–10', title: 'Hackathon Honors & Community Impact', spread: 4 },
-              { num: '11–12', title: 'Back Cover & Collaboration Gateway', spread: 5 },
+              { num: '01–02', title: 'Welcome & How I Think', spread: 0 },
+              { num: '03–04', title: 'Guiding Principles & Contents', spread: 1 },
+              { num: '05–06', title: 'Featured Projects: Guardian AI & AetherOS', spread: 2 },
+              { num: '07–08', title: 'Smart Systems (IARIS) & Technologies', spread: 3 },
+              { num: '09–10', title: 'Hackathons, Milestones & Community', spread: 4 },
+              { num: '11–12', title: 'Get in Touch & Wrap-up', spread: 5 },
             ].map((item) => (
               <div
                 key={item.num}
@@ -857,24 +860,23 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            HACKATHON GRAND PRIZE WINNER
+            HACKATHON FINALIST
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
             Guardian AI
           </h2>
           <p style={{ fontSize: '12px', color: '#f59e0b', fontWeight: 600 }}>
-            Autonomous Edge Computer Vision & Distress Detection
+            Fast emergency distress alerts when seconds count
           </p>
 
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            An offline-first safety telemetry companion engineered to run lightweight computer vision and acoustic risk models
-            directly on local edge devices with sub-200ms trigger latency.
+            An offline-first safety app built to detect distress signals using phone sensors and send immediate alerts with almost no delay.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1' }}>ARCHITECTURE SPEC:</div>
-            {['Edge YOLOv8 Inference', 'Offline-First SQLite Cache', 'Encrypted WebSocket Mesh', 'Zero Cloud Dependency Mode'].map((spec) => (
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1' }}>HIGHLIGHTS:</div>
+            {['Fast sensor alerts', 'Works offline with local storage', 'Direct emergency contact dispatch', 'Single-tap distress activation'].map((spec) => (
               <div key={spec} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#94a3b8' }}>
                 <CheckCircle2 size={13} color="#f59e0b" />
                 <span>{spec}</span>
@@ -899,19 +901,18 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            ADAPTIVE SYSTEMS & TELEMETRY
+            RESOURCE OPTIMIZER
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
             IARIS
           </h2>
           <p style={{ fontSize: '12px', color: '#38bdf8', fontWeight: 600 }}>
-            Intent-Aware Adaptive Resource Intelligence System
+            Smart resource monitor &amp; optimizer
           </p>
 
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            An intelligent resource telemetry platform that models running process workloads, computes cold-start predictions
-            via Similarity Matching, and applies Delta-Based Caching to minimize runtime monitoring overhead.
+            A lightweight system monitor that tracks how your computer uses resources and predicts needs to keep background performance smooth.
           </p>
 
           <div
@@ -923,10 +924,10 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
             }}
           >
             <div style={{ fontSize: '11px', fontWeight: 700, color: '#38bdf8', marginBottom: '4px' }}>
-              KEY ARCHITECTURE
+              BUILT WITH
             </div>
             <div style={{ fontSize: '13px', color: '#e2e8f0' }}>
-              Python • FastAPI • React Dashboards • EWMA Continuity Learning Engine
+              Python • FastAPI • React Dashboards • Lightweight analytics
             </div>
           </div>
         </div>
@@ -947,34 +948,34 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            PROVEN TRACK RECORD
+            EXPERIENCE &amp; MILESTONES
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Honors & Accolades
+            Milestones Along the Way
           </h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {[
               {
-                title: 'Top Finalist — Vibestate Hackathon (Guardian App)',
-                year: '2024',
-                desc: 'Recognized as national finalists for Guardian, an emergency distress and safety telemetry platform.',
+                title: 'Top Finalist — VibeState Hackathon (Guardian App)',
+                year: '2025',
+                desc: 'Built an emergency response app during a 36-hour sprint and pitched it as a national finalist.',
               },
               {
                 title: 'Software Developer Intern — ByteEdu',
-                year: '2024',
-                desc: 'Scaled educational portals, high-performance responsive web modules, and production RESTful APIs.',
+                year: '2026',
+                desc: 'Helped build web tools, improve responsive pages, and maintain open-source projects.',
               },
               {
-                title: 'AI / ML Intern — DecodeLabs',
-                year: '2024 - 2025',
-                desc: 'Engineered deep learning pipelines, accelerated model inference latency, and deployed predictive systems.',
+                title: 'AI Intern — DecodeLabs',
+                year: '2026',
+                desc: 'Worked on machine learning pipelines and real-world predictive models.',
               },
               {
                 title: 'Open Source Contributor — Nexus Spring of Code (NSoC)',
-                year: '2024',
-                desc: 'Contributed validated pull requests, codebase enhancements, and resolved issues in open-source repositories.',
+                year: '2026',
+                desc: 'Contributed code fixes and improvements to active open-source repositories.',
               },
             ].map((milestone) => (
               <div
@@ -1016,26 +1017,26 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            SERVICES & EXPERTISE
+            WHAT I CAN DO
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Capabilities & Engagement
+            How I Can Help
           </h2>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {[
               {
-                title: 'Full-Stack Web & Mobile Architecture',
-                detail: 'Next.js 15, React 19, TypeScript, React Native, and reactive microservices.',
+                title: 'Full-Stack Web Development',
+                detail: 'Building fast, modern web apps with React, Next.js, and clean backend services.',
               },
               {
-                title: 'Sandboxed Code Judges & Compute Engines',
-                detail: 'Docker runtimes, isolated namespaces, resource cgroups, and secure AST parsers.',
+                title: 'Practical AI & Automation',
+                detail: 'Integrating helpful AI models and smart workflows to solve real problems.',
               },
               {
-                title: 'High-Impact UI Design Systems',
-                detail: 'Vanilla CSS design tokens, smooth fluid typography, and 3D micro-interactions.',
+                title: 'Clean UI & Interaction Design',
+                detail: 'Creating polished, responsive interfaces that look great on any screen.',
               },
             ].map((srv) => (
               <div
@@ -1084,16 +1085,15 @@ function renderRightPage(spread: number) {
               width: 'fit-content',
             }}
           >
-            DEVELOPER MANIFESTO
+            HOW I THINK
           </div>
 
           <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            The Intersection of Code & Form
+            Simple Code, Great Experience
           </h2>
 
           <p style={{ fontSize: '13.5px', color: '#cbd5e1', lineHeight: 1.7 }}>
-            True software excellence lives at the boundary where architecture meets artistry.
-            A system that scales to hundreds of thousands of requests is only as compelling as the clarity and delight of its interface.
+            Good software is about balance. Clean, dependable code on the inside, paired with an interface that feels effortless and inviting on the outside.
           </p>
 
           <div
@@ -1107,11 +1107,11 @@ function renderRightPage(spread: number) {
               lineHeight: 1.6,
             }}
           >
-            "Great code is invisible. What remains is effortless speed, unyielding reliability, and quiet elegance."
+            &ldquo;Good software doesn&apos;t need to be complicated. It should just feel fast, reliable, and effortless to use.&rdquo;
           </div>
 
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '12px' }}>
-            {['TypeScript', 'Go', 'Next.js', 'Docker', 'PostgreSQL', 'WebGL'].map((badge) => (
+            {['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'FastAPI'].map((badge) => (
               <span
                 key={badge}
                 style={{
@@ -1143,34 +1143,34 @@ function renderRightPage(spread: number) {
                 marginBottom: '6px',
               }}
             >
-              CORE ARCHITECTURAL PILLARS
+              CORE VALUES
             </div>
             <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff' }}>
-              The Design Principles
+              How I Build
             </h2>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {[
               {
-                title: 'Sub-second Determinism',
-                desc: 'Zero unnecessary network hops; aggressive edge caching and optimized bundle weight.',
+                title: 'Keep It Fast',
+                desc: 'Nobody likes waiting. I aim for snappy page loads and efficient data handling.',
                 tag: 'SPEED',
               },
               {
-                title: 'Defensive Modularity',
-                desc: 'Strict type boundaries, isolated sandbox domains, and decoupled state synchronizers.',
-                tag: 'SCALE',
+                title: 'Keep It Clean',
+                desc: 'Code should be straightforward to read and maintain for anyone who touches it next.',
+                tag: 'SIMPLICITY',
               },
               {
-                title: 'Tactile Polish',
-                desc: 'Fluid micro-animations, tailored dark luxury palettes, and deliberate ergonomic contrast.',
-                tag: 'AESTHETICS',
+                title: 'Make It Feel Good',
+                desc: 'Smooth interactions, clear layouts, and great contrast make everyday apps enjoyable.',
+                tag: 'DESIGN',
               },
               {
-                title: 'Fault Tolerance',
-                desc: 'Graceful failure degradation, offline synchronization, and resilient retry semantics.',
-                tag: 'RESILIENCE',
+                title: 'Keep It Reliable',
+                desc: 'Apps should handle errors gracefully and never leave the user guessing.',
+                tag: 'STABILITY',
               },
             ].map((p) => (
               <div
@@ -1208,19 +1208,18 @@ function renderRightPage(spread: number) {
               width: 'fit-content',
             }}
           >
-            ARCHITECTURAL INTELLIGENCE
+            SYSTEM VISUALIZER
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
             AetherOS
           </h2>
           <p style={{ fontSize: '12px', color: '#818cf8', fontWeight: 600 }}>
-            Unified Architectural Modeling & System Simulation Platform
+            Visual system architecture &amp; modeling platform
           </p>
 
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            A unified architectural platform enabling real-time system modeling, architecture inference, failure simulation,
-            and governance validation powered by GitHub repo synchronization and Azure OpenAI.
+            An interactive platform that lets developers map out their app architectures, simulate component failures, and explore ways to scale cleanly.
           </p>
 
           <div
@@ -1232,15 +1231,15 @@ function renderRightPage(spread: number) {
             }}
           >
             <div style={{ fontSize: '11px', fontWeight: 700, color: '#818cf8', marginBottom: '4px' }}>
-              CORE CAPABILITY
+              CORE IDEA
             </div>
             <div style={{ fontSize: '13px', color: '#e2e8f0' }}>
-              Live dependency analysis, failure simulation, and AI-driven scalability advisor.
+              Turn abstract backend diagrams into living, interactive maps you can test and explore.
             </div>
           </div>
 
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '6px' }}>
-            {['React Flow', 'Zustand', 'Node.js', 'Express', 'MongoDB', 'Azure OpenAI', 'WebSockets'].map((t) => (
+            {['React Flow', 'Zustand', 'Node.js', 'Express', 'MongoDB', 'OpenAI API', 'WebSockets'].map((t) => (
               <span
                 key={t}
                 style={{
@@ -1272,19 +1271,19 @@ function renderRightPage(spread: number) {
                 marginBottom: '6px',
               }}
             >
-              TECHNICAL MATRIX
+              SKILLS &amp; TOOLS
             </div>
             <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff' }}>
-              Full-Stack Mastery
+              Technologies I Work With
             </h2>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {[
-              { category: 'Frontend', stack: 'Next.js 15, React 19, TypeScript, Vanilla CSS, Tailwind', pct: '95%' },
-              { category: 'Backend & APIs', stack: 'Go, Node.js, Express, FastAPI, REST, GraphQL, gRPC', pct: '92%' },
-              { category: 'Databases & State', stack: 'PostgreSQL, Redis, MongoDB, Supabase, Prisma', pct: '90%' },
-              { category: 'DevOps & Systems', stack: 'Docker, Linux CLI, Git, CI/CD, AWS, Edge Hosting', pct: '88%' },
+              { category: 'Frontend', stack: 'Next.js, React, TypeScript, Vanilla CSS, Tailwind', pct: 'Active' },
+              { category: 'Backend & APIs', stack: 'Node.js, Express, Python, FastAPI, REST APIs', pct: 'Active' },
+              { category: 'Databases & Storage', stack: 'PostgreSQL, MongoDB, Supabase, Redis', pct: 'Active' },
+              { category: 'DevOps & Tools', stack: 'Docker, Linux CLI, Git & GitHub, CI/CD', pct: 'Active' },
             ].map((tier) => (
               <div
                 key={tier.category}
@@ -1321,16 +1320,15 @@ function renderRightPage(spread: number) {
               width: 'fit-content',
             }}
           >
-            COMMUNITY & IMPACT
+            SHARING KNOWLEDGE
           </div>
 
           <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Empowering Developers
+            Learning &amp; Helping Others
           </h2>
 
           <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
-            Mentorship is a core tenet of engineering stewardship. I actively conduct technical seminars and deep-dive bootcamps
-            guiding developers on modern system architectures, Next.js optimization, and code review rigor.
+            I enjoy sharing what I learn. Whether it&apos;s helping peers debug code, contributing to open-source projects, or discussing clean web development, growing together makes engineering fun.
           </p>
 
           <div
@@ -1342,10 +1340,10 @@ function renderRightPage(spread: number) {
             }}
           >
             <div style={{ fontSize: '24px', fontWeight: 800, color: '#34d399', fontFamily: 'Space Grotesk, sans-serif' }}>
-              250+ Engineers
+              250+ Students &amp; Peers
             </div>
             <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
-              Trained across modern web architectures & algorithmic design.
+              Collaborated with and helped across workshops, hackathons, and developer communities.
             </div>
           </div>
         </div>
@@ -1372,13 +1370,13 @@ function renderRightPage(spread: number) {
                 marginBottom: '6px',
               }}
             >
-              FINAL MONOGRAPH FOLIO
+              LET&apos;S CONNECT
             </div>
             <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>
-              Let's Build Together
+              Let&apos;s Build Something Great
             </h2>
             <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.6 }}>
-              Ready to create something exceptional? Inquire for software roles, system design, or engineering leadership.
+              Whether you have an exciting project, an internship opportunity, or just want to chat about tech, feel free to reach out!
             </p>
           </div>
 
@@ -1400,7 +1398,7 @@ function renderRightPage(spread: number) {
               <strong>Portfolio:</strong> aringupta.dev
             </div>
             <div style={{ fontSize: '12px', color: '#64748b' }}>
-              India • Available for worldwide remote collaboration
+              India • Open to remote opportunities worldwide
             </div>
           </div>
 

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Download, Menu, X } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 interface NavbarProps {
   activeTab?: string;
@@ -29,7 +30,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
               section === 'home'
                 ? 'Home'
                 : section === 'magazine'
-                ? 'Magazine Portfolio'
+                ? 'Magazine'
                 : section.charAt(0).toUpperCase() + section.slice(1)
             );
             break;
@@ -59,6 +60,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
       });
       window.history.pushState(null, '', href);
       setMobileMenuOpen(false);
+      trackEvent('nav_click', { section: id });
     }
   };
 
@@ -66,7 +68,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Magazine Portfolio', href: '#magazine' },
+    { label: 'Magazine', href: '#magazine' },
     { label: 'Achievements', href: '#achievements' },
   ];
 
@@ -195,6 +197,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
           href="/assets/Arin_Gupta_Resume.pdf"
           download="Arin_Gupta_Resume.pdf"
           id="nav-resume-btn"
+          onClick={() => trackEvent('resume_download', { location: 'navbar_desktop' })}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -287,6 +290,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
           <a
             href="/assets/Arin_Gupta_Resume.pdf"
             download="Arin_Gupta_Resume.pdf"
+            onClick={() => trackEvent('resume_download', { location: 'navbar_mobile' })}
             style={{
               display: 'inline-flex',
               alignItems: 'center',

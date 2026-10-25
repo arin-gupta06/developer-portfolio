@@ -59,21 +59,42 @@ export default function Footer() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div
                 style={{
-                  width: '38px',
-                  height: '38px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 100%)',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '11px',
+                  backgroundColor: '#0a0a0f',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontWeight: 800,
-                  fontSize: '16px',
-                  letterSpacing: '1px',
-                  color: '#ffffff',
-                  boxShadow: '0 4px 16px rgba(56, 189, 248, 0.3)',
+                  gap: '1px',
+                  boxShadow: '0 6px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(129, 140, 248, 0.15)',
+                  userSelect: 'none',
                 }}
               >
-                AG
+                <span
+                  style={{
+                    fontSize: '17px',
+                    fontWeight: 800,
+                    color: '#ffffff',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    lineHeight: 1,
+                  }}
+                >
+                  A
+                </span>
+                <span
+                  style={{
+                    fontSize: '17px',
+                    fontWeight: 800,
+                    color: '#818cf8',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    textShadow: '0 0 14px rgba(129, 140, 248, 0.75)',
+                    lineHeight: 1,
+                  }}
+                >
+                  G
+                </span>
               </div>
               <span style={{ fontSize: '18px', fontWeight: 700, color: '#f8fafc', letterSpacing: '-0.02em' }}>
                 Arin Gupta

@@ -160,23 +160,45 @@ export default function Preloader() {
       >
         {/* Monogram Badge (Brand continuity with Navbar and Footer) */}
         <div
+          id="preloader-monogram"
           style={{
-            width: '46px',
-            height: '46px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 100%)',
+            width: '52px',
+            height: '52px',
+            borderRadius: '14px',
+            backgroundColor: '#0a0a0f',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontWeight: 800,
-            fontSize: '17px',
-            letterSpacing: '1px',
-            color: '#ffffff',
-            boxShadow: '0 4px 20px rgba(56, 189, 248, 0.35)',
+            gap: '1px',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(129, 140, 248, 0.18)',
             marginBottom: '24px',
+            userSelect: 'none',
           }}
         >
-          AG
+          <span
+            style={{
+              fontSize: '22px',
+              fontWeight: 800,
+              color: '#ffffff',
+              fontFamily: 'Space Grotesk, sans-serif',
+              lineHeight: 1,
+            }}
+          >
+            A
+          </span>
+          <span
+            style={{
+              fontSize: '22px',
+              fontWeight: 800,
+              color: '#818cf8',
+              fontFamily: 'Space Grotesk, sans-serif',
+              textShadow: '0 0 16px rgba(129, 140, 248, 0.8)',
+              lineHeight: 1,
+            }}
+          >
+            G
+          </span>
         </div>
 
         {/* Edition Label / Micro tag */}

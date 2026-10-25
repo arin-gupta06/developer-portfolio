@@ -1,28 +1,24 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
   ArrowRight,
   Sparkles,
-  Terminal,
-  Code2,
-  Globe,
-  Cpu,
-  Zap,
-  Mail,
-  Github,
-  Linkedin,
-  Calendar,
-  CheckCircle2,
   BookOpen,
   RotateCcw,
-  Maximize2,
+  CheckCircle2,
+  Cpu,
   Layers,
-  ArrowUpRight,
-  Eye,
+  Zap,
+  Award,
+  Terminal,
+  Compass,
+  FileCode,
+  ShieldCheck,
+  Globe,
+  TrendingUp,
 } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
@@ -32,7 +28,7 @@ export default function MagazineSection() {
   const [isOpeningTransition, setIsOpeningTransition] = useState(false);
 
   // Spread index (0 to 5)
-  const [currentSpread, setCurrentSpread] = useState(1); // Default to Contents & Philosophy
+  const [currentSpread, setCurrentSpread] = useState(1); // Default to Contents & Manifesto
   const [turningState, setTurningState] = useState<{
     isTurning: boolean;
     direction: 'next' | 'prev' | null;
@@ -48,12 +44,12 @@ export default function MagazineSection() {
   const totalSpreads = 6;
 
   const tabs = [
-    { label: 'Intro', spread: 0 },
-    { label: 'Contents', spread: 1 },
-    { label: 'Projects', spread: 2 },
-    { label: 'Tech Stack', spread: 3 },
-    { label: 'Milestones', spread: 4 },
-    { label: 'Back Cover', spread: 5 },
+    { label: 'Intro & Mindset', spread: 0 },
+    { label: 'TOC & Manifesto', spread: 1 },
+    { label: 'Architecture', spread: 2 },
+    { label: 'War Stories', spread: 3 },
+    { label: 'AI & Community', spread: 4 },
+    { label: 'Colophon', spread: 5 },
   ];
 
   // Turn page forward
@@ -129,7 +125,7 @@ export default function MagazineSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Background Image Layer with Enhanced Brightness & Clarity */}
+      {/* Background Image Layer */}
       <div
         id="magazine-bg-image"
         style={{
@@ -141,7 +137,7 @@ export default function MagazineSection() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          filter: 'brightness(1.22) contrast(1.05)',
+          filter: 'brightness(1.18) contrast(1.05)',
           zIndex: 1,
         }}
       />
@@ -152,28 +148,29 @@ export default function MagazineSection() {
           position: 'absolute',
           inset: 0,
           background: `
-            radial-gradient(circle at 50% 50%, rgba(9, 10, 15, 0.2) 0%, rgba(7, 8, 12, 0.6) 100%),
-            linear-gradient(to bottom, rgba(9, 10, 15, 0.85) 0%, rgba(9, 10, 15, 0.4) 22%, transparent 36%, transparent 80%, rgba(9, 10, 15, 0.85) 100%)
+            radial-gradient(circle at 50% 50%, rgba(9, 10, 15, 0.25) 0%, rgba(7, 8, 12, 0.65) 100%),
+            linear-gradient(to bottom, rgba(9, 10, 15, 0.88) 0%, rgba(9, 10, 15, 0.45) 22%, transparent 38%, transparent 80%, rgba(9, 10, 15, 0.88) 100%)
           `,
           zIndex: 2,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Floating Section Header */}
+      {/* Floating Section Header (Pure typography, no heavy bounding box, high contrast) */}
       <div
         style={{
           width: '100%',
-          maxWidth: '1240px',
-          marginBottom: '32px',
+          maxWidth: '1280px',
+          marginBottom: isOpen ? '24px' : '44px',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
+          alignItems: isOpen ? 'center' : 'flex-start',
+          textAlign: isOpen ? 'center' : 'left',
           position: 'relative',
           zIndex: 20,
         }}
       >
+        {/* Issue Badge */}
         <div
           style={{
             display: 'inline-flex',
@@ -181,8 +178,8 @@ export default function MagazineSection() {
             gap: '8px',
             padding: '6px 16px',
             borderRadius: '9999px',
-            backgroundColor: 'rgba(245, 158, 11, 0.08)',
-            border: '1px solid rgba(245, 158, 11, 0.25)',
+            backgroundColor: 'rgba(245, 158, 11, 0.12)',
+            border: '1px solid rgba(245, 158, 11, 0.35)',
             color: '#f59e0b',
             fontSize: '11px',
             fontWeight: 700,
@@ -193,9 +190,10 @@ export default function MagazineSection() {
           }}
         >
           <BookOpen size={13} />
-          <span>PORTFOLIO MAGAZINE</span>
+          <span>PORTFOLIO MAGAZINE • ISSUE 01</span>
         </div>
 
+        {/* Section Heading */}
         <h2
           style={{
             fontSize: 'clamp(32px, 4.2vw, 48px)',
@@ -203,25 +201,29 @@ export default function MagazineSection() {
             color: '#ffffff',
             letterSpacing: '-0.025em',
             marginBottom: '12px',
-            textShadow: '0 4px 20px rgba(0, 0, 0, 0.85), 0 2px 6px rgba(0, 0, 0, 0.6)',
+            textShadow: '0 4px 20px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.85)',
+            lineHeight: 1.15,
+            fontFamily: 'Space Grotesk, sans-serif',
           }}
         >
           The Developer Magazine
         </h2>
 
+        {/* Subtitle - Shifted to left over dark area with high contrast */}
         <p
           id="magazine-subtitle"
           style={{
             fontSize: '15px',
-            color: !isOpen ? '#090a0f' : '#94a3b8',
-            maxWidth: '580px',
+            color: '#cbd5e1',
+            maxWidth: '520px',
             lineHeight: 1.6,
-            fontWeight: !isOpen ? 600 : 400,
+            textShadow: '0 2px 12px rgba(0, 0, 0, 0.95)',
+            margin: 0,
           }}
         >
           {isOpen
-            ? 'Flip through the pages to read about how I build software, my background, and project highlights.'
-            : 'Click the book on the desk to flip through the interactive magazine.'}
+            ? 'Flip through backstage engineering memoirs, architectural blueprints, and hackathon war stories.'
+            : 'Click the book on the desk to flip through architectural blueprints, 36h hackathon war stories, and core engineering principles.'}
         </p>
 
         {/* When Open: Controls and Category Tabs */}
@@ -232,13 +234,13 @@ export default function MagazineSection() {
               alignItems: 'center',
               justifyContent: 'space-between',
               width: '100%',
-              maxWidth: '1160px',
+              maxWidth: '1180px',
               marginTop: '24px',
               flexWrap: 'wrap',
-              gap: '16px',
+              gap: '14px',
             }}
           >
-            {/* Close / Return to Desk button */}
+            {/* Close / Return to Desk */}
             <button
               onClick={handleCloseBook}
               id="magazine-close-btn"
@@ -276,11 +278,14 @@ export default function MagazineSection() {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(15, 17, 26, 0.65)',
+                backgroundColor: 'rgba(15, 17, 26, 0.75)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
                 borderRadius: '9999px',
                 padding: '4px',
                 backdropFilter: 'blur(16px)',
                 WebkitBackdropFilter: 'blur(16px)',
+                flexWrap: 'wrap',
+                gap: '4px',
               }}
             >
               {tabs.map((tab) => {
@@ -378,15 +383,13 @@ export default function MagazineSection() {
           zIndex: 15,
           perspective: '2400px',
           width: '100%',
-          maxWidth: isOpen ? '1180px' : '480px',
+          maxWidth: isOpen ? '1180px' : '520px',
           transition: 'max-width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)',
           display: 'flex',
           justifyContent: 'center',
         }}
       >
-        {/* ============================================================ */}
-        {/* STATE 1: CLOSED MAGAZINE RESTING DIRECTLY ON DESK TABLE      */}
-        {/* ============================================================ */}
+        {/* STATE 1: CLOSED MAGAZINE RESTING DIRECTLY ON DESK TABLE */}
         {!isOpen && (
           <div
             onClick={handleOpenBook}
@@ -395,53 +398,50 @@ export default function MagazineSection() {
               position: 'relative',
               width: '100%',
               maxWidth: '640px',
-              height: '340px',
+              height: '360px',
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'flex-start',
+              justifyContent: 'center',
             }}
           >
-            {/* Interactive Invitation Badge floating above the physical book to prevent hindering the cover art */}
+            {/* Interactive Invitation Badge floating cleanly above the book */}
             <div
               style={{
                 position: 'relative',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '10px',
-                padding: '11px 26px',
+                padding: '12px 28px',
                 borderRadius: '9999px',
                 backgroundColor: 'rgba(245, 158, 11, 0.95)',
                 color: '#090a0f',
                 fontSize: '12.5px',
                 fontWeight: 800,
                 letterSpacing: '0.08em',
-                boxShadow: '0 8px 28px rgba(245, 158, 11, 0.5), 0 0 16px rgba(245, 158, 11, 0.3)',
+                boxShadow: '0 10px 32px rgba(245, 158, 11, 0.55), 0 0 20px rgba(245, 158, 11, 0.35)',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
                 userSelect: 'none',
-                transform: 'translateY(-14px)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-18px) scale(1.04)';
-                e.currentTarget.style.boxShadow = '0 14px 36px rgba(245, 158, 11, 0.7)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.boxShadow = '0 14px 40px rgba(245, 158, 11, 0.7)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(-14px) scale(1)';
-                e.currentTarget.style.boxShadow = '0 8px 28px rgba(245, 158, 11, 0.5)';
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 10px 32px rgba(245, 158, 11, 0.55)';
               }}
             >
-              <Sparkles size={15} />
+              <Sparkles size={16} />
               <span>CLICK TO OPEN MAGAZINE</span>
-              <BookOpen size={15} />
+              <BookOpen size={16} />
             </div>
           </div>
         )}
 
-        {/* ============================================================ */}
-        {/* STATE 2: OPEN DUAL-PAGE SPREAD ON DESK                        */}
-        {/* ============================================================ */}
+        {/* STATE 2: OPEN DUAL-PAGE SPREAD ON DESK */}
         {isOpen && (
           <div
             id="open-magazine-spread"
@@ -500,7 +500,8 @@ export default function MagazineSection() {
                 transform: 'translateX(-50%)',
                 width: '60px',
                 height: '100%',
-                background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.7) 100%)',
+                background:
+                  'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.7) 100%)',
                 zIndex: 25,
                 pointerEvents: 'none',
               }}
@@ -644,39 +645,70 @@ export default function MagazineSection() {
               </div>
             </div>
 
-            {/* ======================================================== */}
-            {/* 3D TURNING PAGE OVERLAY (During Flip Animation)          */}
-            {/* ======================================================== */}
+            {/* 3D TURNING PAGE OVERLAY */}
             {turningState.isTurning && (
               <div
                 style={{
                   position: 'absolute',
                   top: 0,
-                  bottom: 0,
-                  left: turningState.direction === 'next' ? '50%' : '0',
+                  left: turningState.direction === 'next' ? '50%' : 0,
                   width: '50%',
+                  height: '100%',
                   transformOrigin: turningState.direction === 'next' ? 'left center' : 'right center',
+                  animation: `${
+                    turningState.direction === 'next' ? 'pageFlipNext' : 'pageFlipPrev'
+                  } 0.62s cubic-bezier(0.25, 0.1, 0.25, 1) forwards`,
                   transformStyle: 'preserve-3d',
-                  animation:
-                    turningState.direction === 'next'
-                      ? 'pageFlipNext 0.62s cubic-bezier(0.645, 0.045, 0.355, 1) forwards'
-                      : 'pageFlipPrev 0.62s cubic-bezier(0.645, 0.045, 0.355, 1) forwards',
                   zIndex: 30,
-                  backgroundColor: '#151822',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.8)',
                   pointerEvents: 'none',
                 }}
               >
-                {/* Dynamic Shadow Sweeping Across Curvature */}
+                {/* Front of Turning Leaf */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: '#12141d',
+                    padding: '48px 44px',
+                    backfaceVisibility: 'hidden',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                  }}
+                >
+                  <div style={{ opacity: 0.35 }}>
+                    {turningState.direction === 'next'
+                      ? renderRightPage(turningState.fromSpread)
+                      : renderLeftPage(turningState.fromSpread, jumpToSpread)}
+                  </div>
+                </div>
+
+                {/* Back of Turning Leaf */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: '#10121a',
+                    padding: '48px 44px',
+                    transform: 'rotateY(180deg)',
+                    backfaceVisibility: 'hidden',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                  }}
+                >
+                  <div style={{ opacity: 0.35 }}>
+                    {turningState.direction === 'next'
+                      ? renderLeftPage(turningState.toSpread, jumpToSpread)
+                      : renderRightPage(turningState.toSpread)}
+                  </div>
+                </div>
+
+                {/* Moving Curvature Shadow */}
                 <div
                   style={{
                     position: 'absolute',
                     inset: 0,
                     background:
-                      turningState.direction === 'next'
-                        ? 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 40%, rgba(255,255,255,0.06) 70%, rgba(0,0,0,0.4) 100%)'
-                        : 'linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 40%, rgba(255,255,255,0.06) 70%, rgba(0,0,0,0.4) 100%)',
+                      'linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%, rgba(0,0,0,0.5) 100%)',
                     zIndex: 2,
                   }}
                 />
@@ -686,7 +718,7 @@ export default function MagazineSection() {
         )}
       </div>
 
-      {/* Global CSS for 3D page flip keyframes */}
+      {/* Global CSS for 3D page flip keyframes & Responsive Layout */}
       <style jsx global>{`
         @keyframes pageFlipNext {
           0% {
@@ -717,11 +749,11 @@ export default function MagazineSection() {
 }
 
 // =========================================================================
-// HELPER: RENDER LEFT PAGE CONTENT
+// HELPER: RENDER LEFT PAGE CONTENT (Rich Editorial & Systems Essays)
 // =========================================================================
 function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
   switch (spread) {
-    case 0: // Spread 0: Cover / Intro
+    case 0: // Spread 0: Editor's Desk / Introduction
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <div
@@ -736,21 +768,21 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            WELCOME
+            THE CRAFT OF SOFTWARE
           </div>
-          <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Building with Care &amp; Curiosity
+          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            The Art of Frictionless Systems
           </h2>
           <p style={{ fontSize: '13.5px', color: '#cbd5e1', lineHeight: 1.7 }}>
-            Welcome to my portfolio! I believe great software should feel fast, look clean, and make life a little simpler.
+            Welcome to my interactive engineering memoirs. Software is often marketed through a flurry of buzzwords, but beneath the noise lies a quiet, disciplined craft: turning chaotic real-world friction into dependable digital systems.
           </p>
           <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            Whether it&apos;s building a quick utility tool or designing a full-stack web platform, I focus on readable code, thoughtful design, and software that genuinely works well.
+            You won&apos;t find boilerplate project cards in these pages (those can be verified live in the Projects track). Instead, this publication offers a backstage pass into how I reason about system architecture, performance budgets, and building for human empathy.
           </p>
 
           <div
             style={{
-              marginTop: '16px',
+              marginTop: '12px',
               padding: '16px',
               borderRadius: '12px',
               backgroundColor: 'rgba(255, 255, 255, 0.03)',
@@ -761,7 +793,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               Arin Gupta
             </div>
             <div style={{ fontSize: '11px', color: '#64748b' }}>
-              Full-Stack Developer &amp; Problem Solver
+              Full-Stack Architect &amp; Systems Builder • MITS Gwalior
             </div>
           </div>
         </div>
@@ -769,7 +801,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
 
     case 1: // Spread 1: Table of Contents
       return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <div>
             <div
               style={{
@@ -781,21 +813,21 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
                 marginBottom: '6px',
               }}
             >
-              OVERVIEW
+              EDITORIAL INDEX
             </div>
             <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff' }}>
-              Table of Contents
+              Contents of Issue 01
             </h2>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
-              { num: '01–02', title: 'Welcome & How I Think', spread: 0 },
-              { num: '03–04', title: 'Guiding Principles & Contents', spread: 1 },
-              { num: '05–06', title: 'Featured Projects: Guardian AI & AetherOS', spread: 2 },
-              { num: '07–08', title: 'Smart Systems (IARIS) & Technologies', spread: 3 },
-              { num: '09–10', title: 'Hackathons, Milestones & Community', spread: 4 },
-              { num: '11–12', title: 'Get in Touch & Wrap-up', spread: 5 },
+              { num: '01–02', title: "The Editor's Desk & Trade-offs", spread: 0 },
+              { num: '03–04', title: 'The Developer Manifesto: 5 Rules', spread: 1 },
+              { num: '05–06', title: 'Architecture Blueprint: AST & Daemons', spread: 2 },
+              { num: '07–08', title: 'War Stories: 36h Sprints & Post-Mortems', spread: 3 },
+              { num: '09–10', title: 'Applied AI & Mentoring 250+ Peers', spread: 4 },
+              { num: '11–12', title: 'The Next Horizon & Direct Contact', spread: 5 },
             ].map((item) => (
               <div
                 key={item.num}
@@ -807,7 +839,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '10px 14px',
+                  padding: '9px 12px',
                   borderRadius: '10px',
                   backgroundColor: 'rgba(255, 255, 255, 0.03)',
                   border: '1px solid rgba(255, 255, 255, 0.06)',
@@ -823,7 +855,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span
                     style={{
                       fontSize: '11px',
@@ -834,7 +866,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
                   >
                     {item.num}
                   </span>
-                  <span style={{ fontSize: '13px', fontWeight: 600, color: '#f1f5f9' }}>
+                  <span style={{ fontSize: '12.5px', fontWeight: 600, color: '#f1f5f9' }}>
                     {item.title}
                   </span>
                 </div>
@@ -845,48 +877,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
         </div>
       );
 
-    case 2: // Spread 2: Project 1 (Guardian AI)
-      return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div
-            style={{
-              padding: '4px 12px',
-              borderRadius: '6px',
-              backgroundColor: 'rgba(245, 158, 11, 0.12)',
-              border: '1px solid rgba(245, 158, 11, 0.3)',
-              color: '#f59e0b',
-              fontSize: '10px',
-              fontWeight: 700,
-              width: 'fit-content',
-            }}
-          >
-            HACKATHON FINALIST
-          </div>
-
-          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Guardian AI
-          </h2>
-          <p style={{ fontSize: '12px', color: '#f59e0b', fontWeight: 600 }}>
-            Fast emergency distress alerts when seconds count
-          </p>
-
-          <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            An offline-first safety app built to detect distress signals using phone sensors and send immediate alerts with almost no delay.
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1' }}>HIGHLIGHTS:</div>
-            {['Fast sensor alerts', 'Works offline with local storage', 'Direct emergency contact dispatch', 'Single-tap distress activation'].map((spec) => (
-              <div key={spec} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#94a3b8' }}>
-                <CheckCircle2 size={13} color="#f59e0b" />
-                <span>{spec}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-
-    case 3: // Spread 3: Project 3 (IARIS Adaptive Resource Engine)
+    case 2: // Spread 2: Architecture Blueprint (Deconstructing Complexity)
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div
@@ -901,41 +892,51 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            RESOURCE OPTIMIZER
+            SYSTEM ARCHITECTURE
           </div>
 
-          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            IARIS
+          <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            Turning Spaghetti into Sanity
           </h2>
           <p style={{ fontSize: '12px', color: '#38bdf8', fontWeight: 600 }}>
-            Smart resource monitor &amp; optimizer
+            Deconstructing monolithic codebases into visual dependency graphs
           </p>
 
-          <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            A lightweight system monitor that tracks how your computer uses resources and predicts needs to keep background performance smooth.
+          <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
+            When software scales organically, cognitive load skyrockets. Files import modules in cyclical tangles, and every refactor feels like pulling a Jenga block.
+          </p>
+
+          <p style={{ fontSize: '12.5px', color: '#94a3b8', lineHeight: 1.6 }}>
+            My approach: treat code as AST data. By parsing abstract syntax trees into Directed Acyclic Graphs (DAGs), circular dependencies and dead code paths become instantly visual, transforming dread into clarity.
           </p>
 
           <div
             style={{
-              padding: '14px',
-              borderRadius: '12px',
-              backgroundColor: 'rgba(56, 189, 248, 0.06)',
+              padding: '12px 14px',
+              borderRadius: '10px',
+              backgroundColor: 'rgba(56, 189, 248, 0.05)',
               border: '1px solid rgba(56, 189, 248, 0.2)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px',
             }}
           >
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#38bdf8', marginBottom: '4px' }}>
-              BUILT WITH
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#38bdf8' }}>
+              CORE DESIGN HEURISTICS:
             </div>
-            <div style={{ fontSize: '13px', color: '#e2e8f0' }}>
-              Python • FastAPI • React Dashboards • Lightweight analytics
-            </div>
+            {['Decouple state transitions from render side effects', 'Isolate third-party SDKs behind typed facades', 'Strict boundary enforcement between domain models'].map((h) => (
+              <div key={h} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11.5px', color: '#cbd5e1' }}>
+                <CheckCircle2 size={12} color="#38bdf8" />
+                <span>{h}</span>
+              </div>
+            ))}
           </div>
         </div>
       );
 
-    case 4: // Spread 4: Milestones & Hackathons
+    case 3: // Spread 3: War Stories: Hackathon Trenches
       return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div
             style={{
               padding: '4px 12px',
@@ -948,252 +949,53 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               width: 'fit-content',
             }}
           >
-            EXPERIENCE &amp; MILESTONES
+            BATTLE TESTED
           </div>
 
-          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Milestones Along the Way
+          <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            The 36-Hour Crucible
           </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {[
-              {
-                title: 'Top Finalist — VibeState Hackathon (Guardian App)',
-                year: '2025',
-                desc: 'Built an emergency response app during a 36-hour sprint and pitched it as a national finalist.',
-              },
-              {
-                title: 'Software Developer Intern — ByteEdu',
-                year: '2026',
-                desc: 'Helped build web tools, improve responsive pages, and maintain open-source projects.',
-              },
-              {
-                title: 'AI Intern — DecodeLabs',
-                year: '2026',
-                desc: 'Worked on machine learning pipelines and real-world predictive models.',
-              },
-              {
-                title: 'Open Source Contributor — Nexus Spring of Code (NSoC)',
-                year: '2026',
-                desc: 'Contributed code fixes and improvements to active open-source repositories.',
-              },
-            ].map((milestone) => (
-              <div
-                key={milestone.title}
-                style={{
-                  borderLeft: '2px solid #f59e0b',
-                  paddingLeft: '14px',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>
-                    {milestone.title}
-                  </span>
-                  <span style={{ fontSize: '11px', color: '#f59e0b', fontWeight: 600 }}>
-                    {milestone.year}
-                  </span>
-                </div>
-                <p style={{ fontSize: '12px', color: '#94a3b8', margin: '4px 0 0 0', lineHeight: 1.5 }}>
-                  {milestone.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-
-    case 5: // Spread 5: Services & Collaboration
-      return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <div
-            style={{
-              padding: '4px 12px',
-              borderRadius: '6px',
-              backgroundColor: 'rgba(52, 211, 153, 0.12)',
-              border: '1px solid rgba(52, 211, 153, 0.3)',
-              color: '#34d399',
-              fontSize: '10px',
-              fontWeight: 700,
-              width: 'fit-content',
-            }}
-          >
-            WHAT I CAN DO
-          </div>
-
-          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            How I Can Help
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {[
-              {
-                title: 'Full-Stack Web Development',
-                detail: 'Building fast, modern web apps with React, Next.js, and clean backend services.',
-              },
-              {
-                title: 'Practical AI & Automation',
-                detail: 'Integrating helpful AI models and smart workflows to solve real problems.',
-              },
-              {
-                title: 'Clean UI & Interaction Design',
-                detail: 'Creating polished, responsive interfaces that look great on any screen.',
-              },
-            ].map((srv) => (
-              <div
-                key={srv.title}
-                style={{
-                  padding: '12px 14px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
-                }}
-              >
-                <div style={{ fontSize: '13px', fontWeight: 700, color: '#f1f5f9', marginBottom: '2px' }}>
-                  {srv.title}
-                </div>
-                <div style={{ fontSize: '11.5px', color: '#94a3b8', lineHeight: 1.5 }}>
-                  {srv.detail}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-
-    default:
-      return null;
-  }
-}
-
-// =========================================================================
-// HELPER: RENDER RIGHT PAGE CONTENT
-// =========================================================================
-function renderRightPage(spread: number) {
-  switch (spread) {
-    case 0: // Spread 0: Editorial Note
-      return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <div
-            style={{
-              padding: '6px 14px',
-              borderRadius: '6px',
-              backgroundColor: 'rgba(129, 140, 248, 0.1)',
-              border: '1px solid rgba(129, 140, 248, 0.3)',
-              color: '#818cf8',
-              fontSize: '11px',
-              fontWeight: 700,
-              width: 'fit-content',
-            }}
-          >
-            HOW I THINK
-          </div>
-
-          <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Simple Code, Great Experience
-          </h2>
-
-          <p style={{ fontSize: '13.5px', color: '#cbd5e1', lineHeight: 1.7 }}>
-            Good software is about balance. Clean, dependable code on the inside, paired with an interface that feels effortless and inviting on the outside.
+          <p style={{ fontSize: '12px', color: '#f59e0b', fontWeight: 600 }}>
+            What sleep deprivation &amp; ticking clocks teach about shipping
           </p>
 
-          <div
-            style={{
-              borderLeft: '2px solid #818cf8',
-              paddingLeft: '16px',
-              margin: '8px 0',
-              fontStyle: 'italic',
-              fontSize: '13px',
-              color: '#94a3b8',
-              lineHeight: 1.6,
-            }}
-          >
-            &ldquo;Good software doesn&apos;t need to be complicated. It should just feel fast, reliable, and effortless to use.&rdquo;
-          </div>
+          <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
+            During the VibeState &apos;25 hackathon (where our emergency distress system reached the National Finals) and LakeCity, we had no room for academic perfection.
+          </p>
 
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '12px' }}>
-            {['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'FastAPI'].map((badge) => (
-              <span
-                key={badge}
-                style={{
-                  fontSize: '11px',
-                  padding: '3px 10px',
-                  borderRadius: '6px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  color: '#cbd5e1',
-                }}
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
-        </div>
-      );
-
-    case 1: // Spread 1: The Design Principles
-      return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <div
               style={{
-                fontSize: '11px',
-                fontWeight: 700,
-                color: '#818cf8',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                marginBottom: '6px',
+                borderLeft: '2px solid #f59e0b',
+                paddingLeft: '12px',
               }}
             >
-              CORE VALUES
-            </div>
-            <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff' }}>
-              How I Build
-            </h2>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {[
-              {
-                title: 'Keep It Fast',
-                desc: 'Nobody likes waiting. I aim for snappy page loads and efficient data handling.',
-                tag: 'SPEED',
-              },
-              {
-                title: 'Keep It Clean',
-                desc: 'Code should be straightforward to read and maintain for anyone who touches it next.',
-                tag: 'SIMPLICITY',
-              },
-              {
-                title: 'Make It Feel Good',
-                desc: 'Smooth interactions, clear layouts, and great contrast make everyday apps enjoyable.',
-                tag: 'DESIGN',
-              },
-              {
-                title: 'Keep It Reliable',
-                desc: 'Apps should handle errors gracefully and never leave the user guessing.',
-                tag: 'STABILITY',
-              },
-            ].map((p) => (
-              <div
-                key={p.title}
-                style={{
-                  padding: '12px 14px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <span style={{ fontSize: '13px', fontWeight: 700, color: '#f1f5f9' }}>{p.title}</span>
-                  <span style={{ fontSize: '10px', fontWeight: 700, color: '#818cf8' }}>{p.tag}</span>
-                </div>
-                <div style={{ fontSize: '11.5px', color: '#94a3b8', lineHeight: 1.5 }}>{p.desc}</div>
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#ffffff' }}>
+                Rule 1: Scope to 30% of your ambition
               </div>
-            ))}
+              <div style={{ fontSize: '11.5px', color: '#94a3b8', marginTop: '2px', lineHeight: 1.5 }}>
+                Spend the remaining 70% of sprint time perfecting the primary user flow, handling connection drops, and polishing UI latency.
+              </div>
+            </div>
+
+            <div
+              style={{
+                borderLeft: '2px solid #f59e0b',
+                paddingLeft: '12px',
+              }}
+            >
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#ffffff' }}>
+                Rule 2: Demos live or die in the first 45 seconds
+              </div>
+              <div style={{ fontSize: '11.5px', color: '#94a3b8', marginTop: '2px', lineHeight: 1.5 }}>
+                Evaluators rarely inspect back-office schemas. They evaluate the visceral feel of the working system in their own hands.
+              </div>
+            </div>
           </div>
         </div>
       );
 
-    case 2: // Spread 2: Project 2 (AetherOS Platform)
+    case 4: // Spread 4: Practical AI Beyond Hype
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div
@@ -1208,18 +1010,18 @@ function renderRightPage(spread: number) {
               width: 'fit-content',
             }}
           >
-            SYSTEM VISUALIZER
+            FRONTIER TECH
           </div>
 
-          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            AetherOS
+          <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            AI as a Multiplier, Not a Crutch
           </h2>
           <p style={{ fontSize: '12px', color: '#818cf8', fontWeight: 600 }}>
-            Visual system architecture &amp; modeling platform
+            Where transformers shine &amp; where deterministic code must hold the line
           </p>
 
-          <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.65 }}>
-            An interactive platform that lets developers map out their app architectures, simulate component failures, and explore ways to scale cleanly.
+          <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
+            Transformers and semantic embeddings are miraculous for contextual search and fuzzy AST matching. But in production systems, probabilistic models cannot be trusted with safety-critical state transitions.
           </p>
 
           <div
@@ -1231,15 +1033,247 @@ function renderRightPage(spread: number) {
             }}
           >
             <div style={{ fontSize: '11px', fontWeight: 700, color: '#818cf8', marginBottom: '4px' }}>
-              CORE IDEA
+              THE HYBRID PARADIGM
             </div>
-            <div style={{ fontSize: '13px', color: '#e2e8f0' }}>
-              Turn abstract backend diagrams into living, interactive maps you can test and explore.
+            <div style={{ fontSize: '12.5px', color: '#e2e8f0', lineHeight: 1.6 }}>
+              Pair the generative flexibility of AI for discovery with the rigid predictability of typed schemas (Zod / Pydantic) for state execution.
+            </div>
+          </div>
+        </div>
+      );
+
+    case 5: // Spread 5: The Next Horizon
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div
+            style={{
+              padding: '4px 12px',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(52, 211, 153, 0.12)',
+              border: '1px solid rgba(52, 211, 153, 0.3)',
+              color: '#34d399',
+              fontSize: '10px',
+              fontWeight: 700,
+              width: 'fit-content',
+            }}
+          >
+            ENGINEERING ROADMAP
+          </div>
+
+          <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            What I&apos;m Exploring Next
+          </h2>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[
+              {
+                title: 'Rust & Low-Level Runtimes',
+                detail: 'Benchmarking kernel-level performance, memory safety, and native daemons.',
+              },
+              {
+                title: 'Local-First CRDT Data Stores',
+                detail: 'Building distributed multi-user software where offline resilience is zero-effort.',
+              },
+              {
+                title: 'Autonomous Dev Agent Toolchains',
+                detail: 'Structured agent loops that safely interact with real-world developer environments.',
+              },
+            ].map((exp) => (
+              <div
+                key={exp.title}
+                style={{
+                  padding: '12px 14px',
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                }}
+              >
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#f1f5f9', marginBottom: '2px' }}>
+                  {exp.title}
+                </div>
+                <div style={{ fontSize: '11.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                  {exp.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    default:
+      return null;
+  }
+}
+
+// =========================================================================
+// HELPER: RENDER RIGHT PAGE CONTENT (Manifesto, Post-Mortems, Community)
+// =========================================================================
+function renderRightPage(spread: number) {
+  switch (spread) {
+    case 0: // Spread 0: Editorial Note & Decision Framework
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+          <div
+            style={{
+              padding: '6px 14px',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(129, 140, 248, 0.1)',
+              border: '1px solid rgba(129, 140, 248, 0.3)',
+              color: '#818cf8',
+              fontSize: '11px',
+              fontWeight: 700,
+              width: 'fit-content',
+            }}
+          >
+            DECISION FRAMEWORK
+          </div>
+
+          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            How I Navigate Trade-Offs
+          </h2>
+
+          <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
+            Every line of production code is a negotiation between speed of delivery, long-term maintainability, and user latency. Here is how I weigh those forces:
+          </p>
+
+          <div
+            style={{
+              borderLeft: '2px solid #818cf8',
+              paddingLeft: '16px',
+              margin: '6px 0',
+              fontStyle: 'italic',
+              fontSize: '12.5px',
+              color: '#94a3b8',
+              lineHeight: 1.6,
+            }}
+          >
+            &ldquo;Code is read 10 times more often than it is written. If an architecture cannot be explained to a peer in 60 seconds, it is a liability.&rdquo;
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '6px' }}>
+            {[
+              { label: 'Latency Budget', desc: '<100ms for UI reactions, <5ms telemetry overhead' },
+              { label: 'Empathy Metric', desc: 'A failed request is a human frustration, not just a 500 status' },
+            ].map((p) => (
+              <div key={p.label} style={{ fontSize: '12px', color: '#cbd5e1' }}>
+                <strong style={{ color: '#818cf8' }}>{p.label}: </strong>
+                <span>{p.desc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    case 1: // Spread 1: The Developer's Manifesto
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <div
+              style={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#818cf8',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                marginBottom: '4px',
+              }}
+            >
+              CORE VALUES
+            </div>
+            <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff' }}>
+              The 5 Engineering Rules
+            </h2>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {[
+              {
+                title: '1. Measure Before You Optimize',
+                desc: 'Profile flamegraphs and memory allocations before writing clever workarounds.',
+              },
+              {
+                title: '2. Fail Loud in Dev, Graceful in Prod',
+                desc: 'Expose stacktraces locally; keep user sessions functional under isolated failures.',
+              },
+              {
+                title: '3. UI Is Part of System Architecture',
+                desc: 'Optimistic updates and skeletons make 200ms latency feel instantaneous.',
+              },
+              {
+                title: "4. Respect the User's Hardware",
+                desc: 'Every background thread, socket listener, and bundle MB must justify its footprint.',
+              },
+              {
+                title: '5. Documentation Is Kindness',
+                desc: 'Clear Git histories and typed contracts respect the engineers who inherit your code.',
+              },
+            ].map((p) => (
+              <div
+                key={p.title}
+                style={{
+                  padding: '10px 12px',
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                }}
+              >
+                <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#f1f5f9', marginBottom: '2px' }}>
+                  {p.title}
+                </div>
+                <div style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.45 }}>{p.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    case 2: // Spread 2: Real-Time Pipelines & Sensors
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div
+            style={{
+              padding: '4px 12px',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(129, 140, 248, 0.12)',
+              border: '1px solid rgba(129, 140, 248, 0.3)',
+              color: '#818cf8',
+              fontSize: '10px',
+              fontWeight: 700,
+              width: 'fit-content',
+            }}
+          >
+            REAL-TIME PIPELINES
+          </div>
+
+          <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            Sub-200ms Telemetry Pipelines
+          </h2>
+          <p style={{ fontSize: '12px', color: '#818cf8', fontWeight: 600 }}>
+            Engineering sensor daemons that survive network dropouts
+          </p>
+
+          <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
+            Real-time systems must handle the messy real world: flaking 4G handoffs, device battery throttling, and erratic packet loss.
+          </p>
+
+          <div
+            style={{
+              padding: '14px',
+              borderRadius: '12px',
+              backgroundColor: 'rgba(129, 140, 248, 0.06)',
+              border: '1px solid rgba(129, 140, 248, 0.2)',
+            }}
+          >
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#818cf8', marginBottom: '4px' }}>
+              LOCAL-FIRST OPTIMISM
+            </div>
+            <div style={{ fontSize: '12.5px', color: '#e2e8f0', lineHeight: 1.6 }}>
+              Events buffer to indexed local storage instantly. When the socket reconnects, exponential backoff flushes deduplicated deltas without blocking the 60 FPS render thread.
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '6px' }}>
-            {['React Flow', 'Zustand', 'Node.js', 'Express', 'MongoDB', 'OpenAI API', 'WebSockets'].map((t) => (
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '4px' }}>
+            {['WebSockets', 'Worker Threads', 'Vector Timestamps', 'Local-First Cache', 'Delta Sync'].map((t) => (
               <span
                 key={t}
                 style={{
@@ -1257,7 +1291,7 @@ function renderRightPage(spread: number) {
         </div>
       );
 
-    case 3: // Spread 3: Technical Mastery Matrix
+    case 3: // Spread 3: Post-Mortems & Bugs
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
@@ -1265,42 +1299,51 @@ function renderRightPage(spread: number) {
               style={{
                 fontSize: '11px',
                 fontWeight: 700,
-                color: '#38bdf8',
+                color: '#f59e0b',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                marginBottom: '6px',
+                marginBottom: '4px',
               }}
             >
-              SKILLS &amp; TOOLS
+              DEBUGGING CHRONICLES
             </div>
-            <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff' }}>
-              Technologies I Work With
+            <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff' }}>
+              Bugs That Made Me Better
             </h2>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {[
-              { category: 'Frontend', stack: 'Next.js, React, TypeScript, Vanilla CSS, Tailwind', pct: 'Active' },
-              { category: 'Backend & APIs', stack: 'Node.js, Express, Python, FastAPI, REST APIs', pct: 'Active' },
-              { category: 'Databases & Storage', stack: 'PostgreSQL, MongoDB, Supabase, Redis', pct: 'Active' },
-              { category: 'DevOps & Tools', stack: 'Docker, Linux CLI, Git & GitHub, CI/CD', pct: 'Active' },
-            ].map((tier) => (
-              <div
-                key={tier.category}
-                style={{
-                  padding: '10px 14px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 700, color: '#38bdf8' }}>{tier.category}</span>
-                  <span style={{ fontSize: '11px', color: '#94a3b8', fontFamily: 'Space Grotesk, monospace' }}>{tier.pct}</span>
-                </div>
-                <div style={{ fontSize: '11.5px', color: '#cbd5e1' }}>{tier.stack}</div>
+            <div
+              style={{
+                padding: '12px 14px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.06)',
+              }}
+            >
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#f59e0b', marginBottom: '3px' }}>
+                The Ghost Memory Leak (1.2 GB RAM)
               </div>
-            ))}
+              <div style={{ fontSize: '11.5px', color: '#cbd5e1', lineHeight: 1.5 }}>
+                A telemetry daemon consumed server RAM over 48 hours. Cause: uncleaned listener closures in a reconnect loop. Taught me to always build deterministic disposers.
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: '12px 14px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.06)',
+              }}
+            >
+              <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#38bdf8', marginBottom: '3px' }}>
+                The Out-of-Order Sensor Dispatch
+              </div>
+              <div style={{ fontSize: '11.5px', color: '#cbd5e1', lineHeight: 1.5 }}>
+                Variable cellular round-trips caused distress events to arrive out of order. Solved by monotonic vector timestamps on device-side dispatches.
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -1323,33 +1366,37 @@ function renderRightPage(spread: number) {
             SHARING KNOWLEDGE
           </div>
 
-          <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
-            Learning &amp; Helping Others
+          <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }}>
+            Mentoring 250+ Peers &amp; Open Source
           </h2>
 
           <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.65 }}>
-            I enjoy sharing what I learn. Whether it&apos;s helping peers debug code, contributing to open-source projects, or discussing clean web development, growing together makes engineering fun.
+            As GitHub Coordinator at MITS Gwalior, I organized developer bootcamps, git workflows, and hackathon teams for over 250 students.
+          </p>
+
+          <p style={{ fontSize: '12.5px', color: '#94a3b8', lineHeight: 1.6 }}>
+            Teaching is the ultimate test of understanding: if you cannot explain an abstraction without relying on jargon, you don&apos;t truly grasp it yet.
           </p>
 
           <div
             style={{
-              padding: '16px',
+              padding: '14px',
               borderRadius: '12px',
               backgroundColor: 'rgba(52, 211, 153, 0.06)',
               border: '1px solid rgba(52, 211, 153, 0.2)',
             }}
           >
-            <div style={{ fontSize: '24px', fontWeight: 800, color: '#34d399', fontFamily: 'Space Grotesk, sans-serif' }}>
-              250+ Students &amp; Peers
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#34d399', fontFamily: 'Space Grotesk, sans-serif' }}>
+              250+ Engineers Mentored
             </div>
-            <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
-              Collaborated with and helped across workshops, hackathons, and developer communities.
+            <div style={{ fontSize: '11.5px', color: '#94a3b8', marginTop: '2px' }}>
+              Active contributor to Nexus Spring of Code (NSoC) and open student tooling.
             </div>
           </div>
         </div>
       );
 
-    case 5: // Spread 5: Back Cover & Contact Gateway
+    case 5: // Spread 5: Colophon & Closing
       return (
         <div
           style={{
@@ -1370,13 +1417,13 @@ function renderRightPage(spread: number) {
                 marginBottom: '6px',
               }}
             >
-              LET&apos;S CONNECT
+              COLOPHON &amp; CONTACT
             </div>
-            <h2 style={{ fontSize: '26px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>
-              Let&apos;s Build Something Great
+            <h2 style={{ fontSize: '25px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>
+              Let&apos;s Build Something Resilient
             </h2>
-            <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: 1.6 }}>
-              Whether you have an exciting project, an internship opportunity, or just want to chat about tech, feel free to reach out!
+            <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.6 }}>
+              Whether you are looking for an engineer who understands full-stack performance, an internship collaborator, or want to discuss system architectures:
             </p>
           </div>
 
@@ -1384,21 +1431,21 @@ function renderRightPage(spread: number) {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '10px',
-              padding: '16px',
+              gap: '8px',
+              padding: '14px',
               borderRadius: '12px',
               backgroundColor: 'rgba(255, 255, 255, 0.03)',
               border: '1px solid rgba(255, 255, 255, 0.06)',
             }}
           >
-            <div style={{ fontSize: '12px', color: '#cbd5e1' }}>
-              <strong>Direct Email:</strong> aringupta2244@gmail.com
+            <div style={{ fontSize: '12px', color: '#f1f5f9' }}>
+              <strong style={{ color: '#f59e0b' }}>Direct Email: </strong> aringupta2244@gmail.com
             </div>
-            <div style={{ fontSize: '12px', color: '#cbd5e1' }}>
-              <strong>Portfolio:</strong> aringupta.dev
+            <div style={{ fontSize: '12px', color: '#f1f5f9' }}>
+              <strong style={{ color: '#818cf8' }}>GitHub: </strong> github.com/arin-gupta06
             </div>
-            <div style={{ fontSize: '12px', color: '#64748b' }}>
-              India • Open to remote opportunities worldwide
+            <div style={{ fontSize: '11.5px', color: '#64748b' }}>
+              Open to high-impact software roles &amp; remote collaborations worldwide.
             </div>
           </div>
 
@@ -1409,16 +1456,16 @@ function renderRightPage(spread: number) {
               alignItems: 'center',
               justifyContent: 'space-between',
               borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-              paddingTop: '16px',
+              paddingTop: '14px',
             }}
           >
-            <div style={{ display: 'flex', gap: '2px', height: '24px', opacity: 0.6 }}>
+            <div style={{ display: 'flex', gap: '2px', height: '22px', opacity: 0.6 }}>
               {[3, 1, 2, 4, 1, 3, 2, 1, 4, 2, 1, 3, 2, 1, 3].map((w, i) => (
                 <div key={i} style={{ width: `${w}px`, height: '100%', backgroundColor: '#cbd5e1' }} />
               ))}
             </div>
             <span style={{ fontSize: '10px', color: '#64748b', fontFamily: 'Space Grotesk, monospace' }}>
-              ISSN 2026-AG-DEV
+              ISSN 2026-ARIN-DEV
             </span>
           </div>
         </div>

@@ -793,7 +793,7 @@ function renderLeftPage(spread: number, jumpToSpread: (s: number) => void) {
               Arin Gupta
             </div>
             <div style={{ fontSize: '11px', color: '#64748b' }}>
-              Full-Stack Architect &amp; Systems Builder • MITS Gwalior
+              Software Engineer &amp; AI/ML Developer • MITS Gwalior
             </div>
           </div>
         </div>

@@ -163,9 +163,9 @@ export default function HeroSection() {
                 position: 'relative',
               }}
             >
-              Smart &amp; Clean
+              Software &amp; AI
             </span>
-            <span>Software</span>
+            <span>Systems</span>
           </h1>
 
           {/* Subtitle */}
@@ -180,7 +180,7 @@ export default function HeroSection() {
               marginBottom: '36px',
             }}
           >
-            I&apos;m a full-stack developer and CS &amp; Design student who loves building fast web apps, clean backend systems, and practical AI tools that feel great to use.
+            I&apos;m a software developer and CS &amp; Design student passionate about building clean web applications, dependable backend systems, and practical machine learning solutions that solve real problems.
           </p>
 
           {/* Action Buttons */}

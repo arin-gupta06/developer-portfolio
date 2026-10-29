@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Download, Menu, X } from 'lucide-react';
+import { Download, Menu, X, ChevronDown, Code2, Cpu } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
 interface NavbarProps {
@@ -13,6 +13,8 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState(activeTab);
   const [scrolled, setScrolled] = useState(false);
+  const [resumeDropdownOpen, setResumeDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +45,31 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdown on outside click or escape key
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setResumeDropdownOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setResumeDropdownOpen(false);
+      }
+    };
+
+    if (resumeDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [resumeDropdownOpen]);
+
   const scrollToSection = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     const id = href.replace('#', '');
@@ -60,6 +87,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
       });
       window.history.pushState(null, '', href);
       setMobileMenuOpen(false);
+      setResumeDropdownOpen(false);
       trackEvent('nav_click', { section: id });
     }
   };
@@ -191,45 +219,241 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
         })}
       </nav>
 
-      {/* Right Side: Resume Button - Completely borderless, sleek glass glow */}
+      {/* Right Side: Resume Dropdown Button */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <a
-          href="/assets/Arin_Gupta_Resume.pdf"
-          download="Arin_Gupta_Resume.pdf"
-          id="nav-resume-btn"
-          onClick={() => trackEvent('resume_download', { location: 'navbar_desktop' })}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '10px 22px',
-            borderRadius: '9999px',
-            fontSize: '14px',
-            fontWeight: 500,
-            color: '#ffffff',
-            backgroundColor: 'rgba(255, 255, 255, 0.08)',
-            border: 'none',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-            textDecoration: 'none',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(129, 140, 248, 0.25)';
-            e.currentTarget.style.transform = 'translateY(-1px)';
-            e.currentTarget.style.boxShadow = '0 6px 24px rgba(129, 140, 248, 0.3)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
-          }}
-        >
-          <span>Resume</span>
-          <Download size={14} style={{ strokeWidth: 2.2 }} />
-        </a>
+        <div ref={dropdownRef} style={{ position: 'relative' }}>
+          <button
+            type="button"
+            id="nav-resume-btn"
+            onClick={() => setResumeDropdownOpen((prev) => !prev)}
+            aria-expanded={resumeDropdownOpen}
+            aria-haspopup="true"
+            aria-label="Download Resume Options"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '10px 20px',
+              borderRadius: '9999px',
+              fontSize: '14px',
+              fontWeight: 500,
+              color: '#ffffff',
+              backgroundColor: resumeDropdownOpen
+                ? 'rgba(129, 140, 248, 0.28)'
+                : 'rgba(255, 255, 255, 0.08)',
+              border: 'none',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              transition: 'all 0.25s ease',
+              cursor: 'pointer',
+              boxShadow: resumeDropdownOpen
+                ? '0 6px 24px rgba(129, 140, 248, 0.35)'
+                : '0 4px 20px rgba(0, 0, 0, 0.2)',
+            }}
+            onMouseEnter={(e) => {
+              if (!resumeDropdownOpen) {
+                e.currentTarget.style.backgroundColor = 'rgba(129, 140, 248, 0.25)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 6px 24px rgba(129, 140, 248, 0.3)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!resumeDropdownOpen) {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+              }
+            }}
+          >
+            <span>Resume</span>
+            <ChevronDown
+              size={14}
+              style={{
+                strokeWidth: 2.2,
+                transform: resumeDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            />
+          </button>
+
+          {/* Desktop Dropdown Menu */}
+          {resumeDropdownOpen && (
+            <div
+              id="resume-dropdown-menu"
+              style={{
+                position: 'absolute',
+                top: 'calc(100% + 10px)',
+                right: 0,
+                width: '300px',
+                padding: '8px',
+                borderRadius: '16px',
+                backgroundColor: 'rgba(13, 15, 23, 0.96)',
+                backdropFilter: 'blur(24px)',
+                WebkitBackdropFilter: 'blur(24px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(129, 140, 248, 0.18)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '6px',
+                zIndex: 110,
+              }}
+            >
+              <div
+                style={{
+                  padding: '6px 10px 4px 10px',
+                  fontSize: '10.5px',
+                  fontWeight: 700,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: '#64748b',
+                  fontFamily: 'Space Grotesk, sans-serif',
+                }}
+              >
+                Select Track
+              </div>
+
+              {/* Option 1: Software Engineer Resume */}
+              <a
+                href="/assets/Arin_Gupta_Software_Resume.pdf"
+                download="Arin_Gupta_Software_Resume.pdf"
+                id="resume-download-software"
+                onClick={() => {
+                  setResumeDropdownOpen(false);
+                  trackEvent('resume_download', { location: 'navbar_desktop', track: 'software' });
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '10px 12px',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                  transition: 'all 0.2s ease',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(129, 140, 248, 0.14)';
+                  e.currentTarget.style.transform = 'translateX(2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+                  e.currentTarget.style.transform = 'translateX(0)';
+                }}
+              >
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgba(99, 102, 241, 0.16)',
+                    border: '1px solid rgba(99, 102, 241, 0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#818cf8',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Code2 size={18} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div
+                    style={{
+                      fontSize: '13.5px',
+                      fontWeight: 600,
+                      color: '#ffffff',
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    Software Resume
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '11.5px',
+                      color: '#94a3b8',
+                      lineHeight: 1.3,
+                      marginTop: '2px',
+                    }}
+                  >
+                    Full-Stack &amp; Web Systems
+                  </div>
+                </div>
+                <Download size={14} style={{ color: '#818cf8', opacity: 0.85, flexShrink: 0 }} />
+              </a>
+
+              {/* Option 2: AI / ML Resume */}
+              <a
+                href="/assets/Arin_Gupta_AI_ML_Resume.pdf"
+                download="Arin_Gupta_AI_ML_Resume.pdf"
+                id="resume-download-aiml"
+                onClick={() => {
+                  setResumeDropdownOpen(false);
+                  trackEvent('resume_download', { location: 'navbar_desktop', track: 'aiml' });
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '10px 12px',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                  transition: 'all 0.2s ease',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(56, 189, 248, 0.14)';
+                  e.currentTarget.style.transform = 'translateX(2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+                  e.currentTarget.style.transform = 'translateX(0)';
+                }}
+              >
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgba(56, 189, 248, 0.16)',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#38bdf8',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Cpu size={18} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div
+                    style={{
+                      fontSize: '13.5px',
+                      fontWeight: 600,
+                      color: '#ffffff',
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    AI / ML Resume
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '11.5px',
+                      color: '#94a3b8',
+                      lineHeight: 1.3,
+                      marginTop: '2px',
+                    }}
+                  >
+                    Transformers, RAG &amp; NLP
+                  </div>
+                </div>
+                <Download size={14} style={{ color: '#38bdf8', opacity: 0.85, flexShrink: 0 }} />
+              </a>
+            </div>
+          )}
+        </div>
 
         {/* Mobile Menu Toggle Button */}
         <button
@@ -266,7 +490,7 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
             padding: '24px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '16px',
+            gap: '14px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
           }}
@@ -280,34 +504,94 @@ export default function Navbar({ activeTab = 'Home' }: NavbarProps) {
                 fontSize: '16px',
                 fontWeight: item.label === currentSection ? 600 : 400,
                 color: item.label === currentSection ? '#818cf8' : '#e2e8f0',
-                padding: '8px 0',
+                padding: '6px 0',
                 textDecoration: 'none',
               }}
             >
               {item.label}
             </Link>
           ))}
-          <a
-            href="/assets/Arin_Gupta_Resume.pdf"
-            download="Arin_Gupta_Resume.pdf"
-            onClick={() => trackEvent('resume_download', { location: 'navbar_mobile' })}
+
+          {/* Mobile Resume Choices */}
+          <div
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '10px 16px',
-              borderRadius: '8px',
-              backgroundColor: 'rgba(129, 140, 248, 0.2)',
-              color: '#ffffff',
-              fontSize: '15px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              marginTop: '8px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              paddingTop: '14px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              marginTop: '4px',
             }}
           >
-            <span>Download Resume</span>
-            <Download size={15} />
-          </a>
+            <div
+              style={{
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#64748b',
+                fontFamily: 'Space Grotesk, sans-serif',
+              }}
+            >
+              Download Resume
+            </div>
+
+            <a
+              href="/assets/Arin_Gupta_Software_Resume.pdf"
+              download="Arin_Gupta_Software_Resume.pdf"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                trackEvent('resume_download', { location: 'navbar_mobile', track: 'software' });
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '11px 14px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(129, 140, 248, 0.15)',
+                border: '1px solid rgba(129, 140, 248, 0.25)',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Code2 size={16} color="#818cf8" />
+                <span>Software Developer Resume</span>
+              </div>
+              <Download size={15} color="#818cf8" />
+            </a>
+
+            <a
+              href="/assets/Arin_Gupta_AI_ML_Resume.pdf"
+              download="Arin_Gupta_AI_ML_Resume.pdf"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                trackEvent('resume_download', { location: 'navbar_mobile', track: 'aiml' });
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '11px 14px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                border: '1px solid rgba(56, 189, 248, 0.25)',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Cpu size={16} color="#38bdf8" />
+                <span>AI / ML Developer Resume</span>
+              </div>
+              <Download size={15} color="#38bdf8" />
+            </a>
+          </div>
         </div>
       )}
     </header>

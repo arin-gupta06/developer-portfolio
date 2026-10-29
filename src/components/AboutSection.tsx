@@ -8,7 +8,7 @@ export default function AboutSection() {
     {
       icon: Briefcase,
       label: 'ROLE',
-      value: 'Full-Stack Developer',
+      value: 'Software & AI/ML Developer',
       href: null,
     },
     {
@@ -167,18 +167,18 @@ export default function AboutSection() {
               }}
             >
               I&apos;m currently studying Computer Science &amp; Design at{' '}
-              <strong style={{ color: '#ffffff', fontWeight: 600 }}>MITS Gwalior</strong>. I love turning ideas into real, working products—from clean backend APIs to smooth, responsive user interfaces.
+              <strong style={{ color: '#ffffff', fontWeight: 600 }}>MITS Gwalior</strong>. I focus on building reliable software and practical AI—from clean backend APIs and responsive web interfaces to machine learning pipelines.
             </p>
 
             <p
               style={{
                 fontSize: '15px',
-                lineHeight: 1.7,
+                lineHeight: 1.75,
                 color: '#94a3b8',
                 margin: 0,
               }}
             >
-              Most of my work centers around solving practical everyday problems: like emergency alerts (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>GuardianAI</strong>), visual architecture design (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>AetherOS</strong>), and open-source civic tools (<strong style={{ color: '#f1f5f9', fontWeight: 600 }}>ChronOS</strong>).
+              Whether engineering responsive web applications, optimizing backend workflows, or deploying machine learning models for semantic analysis, I focus on building fast, dependable tools that solve real problems with simplicity and care.
             </p>
           </div>
 
@@ -389,7 +389,7 @@ export default function AboutSection() {
                 letterSpacing: '-0.02em',
               }}
             >
-              Full-Stack Developer
+              Software &amp; AI/ML Developer
             </h3>
 
             {/* Bio Description */}
@@ -401,7 +401,7 @@ export default function AboutSection() {
                 marginBottom: '28px',
               }}
             >
-              A curious developer focused on clean code, good design, and building things people find genuinely useful.
+              A curious developer building clean web architectures, reliable backends, and practical machine learning solutions people genuinely enjoy using.
             </p>
 
             {/* Bottom Status Chips */}

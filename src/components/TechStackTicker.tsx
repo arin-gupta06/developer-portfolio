@@ -15,7 +15,7 @@ import {
 
 interface TechItem {
   name: string;
-  category: 'Language' | 'Frontend' | 'Backend' | 'Database' | 'DevOps & Tools';
+  category: 'Language' | 'Frontend' | 'Backend' | 'Database' | 'DevOps & Tools' | 'AI & ML';
   color: string;
 }
 
@@ -26,22 +26,25 @@ export default function TechStackTicker() {
     { name: 'JavaScript (ES6+)', category: 'Language', color: '#f7df1e' },
     { name: 'TypeScript', category: 'Language', color: '#3178c6' },
     { name: 'Python', category: 'Language', color: '#3b82f6' },
+    { name: 'PyTorch', category: 'AI & ML', color: '#ee4c2c' },
     { name: 'React', category: 'Frontend', color: '#61dafb' },
     { name: 'Next.js', category: 'Frontend', color: '#ffffff' },
+    { name: 'Transformers', category: 'AI & ML', color: '#ffcc00' },
     { name: 'Node.js', category: 'Backend', color: '#22c55e' },
-    { name: 'Express.js', category: 'Backend', color: '#94a3b8' },
     { name: 'FastAPI', category: 'Backend', color: '#009688' },
-    { name: 'Kotlin', category: 'Language', color: '#a97bff' },
-    { name: 'C++', category: 'Language', color: '#00599c' },
+    { name: 'RAG & Embeddings', category: 'AI & ML', color: '#a855f7' },
+    { name: 'Express.js', category: 'Backend', color: '#94a3b8' },
+    { name: 'DistilBERT / NLP', category: 'AI & ML', color: '#38bdf8' },
     { name: 'TailwindCSS', category: 'Frontend', color: '#38bdf8' },
     { name: 'PostgreSQL', category: 'Database', color: '#336791' },
+    { name: 'Redis', category: 'Database', color: '#dc2626' },
+    { name: 'scikit-learn', category: 'AI & ML', color: '#f59e0b' },
     { name: 'MongoDB', category: 'Database', color: '#47a248' },
     { name: 'WebSockets', category: 'Backend', color: '#f59e0b' },
     { name: 'REST APIs', category: 'Backend', color: '#06b6d4' },
-    { name: 'Git & GitHub', category: 'DevOps & Tools', color: '#f05032' },
     { name: 'Docker', category: 'DevOps & Tools', color: '#2496ed' },
+    { name: 'Git & GitHub', category: 'DevOps & Tools', color: '#f05032' },
     { name: 'Linux / CLI', category: 'DevOps & Tools', color: '#eab308' },
-    { name: 'Code Analysis (AST)', category: 'DevOps & Tools', color: '#10b981' },
   ];
 
   // Duplicate for seamless infinite loop
@@ -59,6 +62,8 @@ export default function TechStackTicker() {
         return <Database size={13} />;
       case 'DevOps & Tools':
         return <GitBranch size={13} />;
+      case 'AI & ML':
+        return <Cpu size={13} />;
       default:
         return <Layers size={13} />;
     }

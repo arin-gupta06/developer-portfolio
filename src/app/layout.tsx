@@ -3,20 +3,23 @@ import './globals.css';
 import AnalyticsProvider from '@/components/AnalyticsProvider';
 
 export const metadata: Metadata = {
-  title: 'Arin Gupta — Full-Stack Developer',
+  title: 'Arin Gupta — Software Engineer & AI/ML Developer',
   description:
-    "Portfolio of Arin Gupta, Full-Stack Developer. Explore projects in web development, practical AI tools, open-source work, and engineering milestones.",
+    "Portfolio of Arin Gupta, Software Engineer & AI/ML Developer. Explore full-stack web applications, dependable backend systems, and applied machine learning projects.",
   keywords: [
     'Arin Gupta',
-    'Full-Stack Developer',
-    'AI Developer',
     'Software Engineer',
+    'AI/ML Developer',
+    'Full-Stack Developer',
+    'Machine Learning',
+    'PyTorch',
     'React',
     'Next.js',
     'TypeScript',
     'Python',
     'FastAPI',
     'Node.js',
+    'Transformers',
     'Portfolio',
   ],
   authors: [{ name: 'Arin Gupta', url: 'https://github.com/arin-gupta06' }],
@@ -39,16 +42,16 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://github.com/arin-gupta06',
-    title: 'Arin Gupta — Full-Stack Developer',
+    title: 'Arin Gupta — Software Engineer & AI/ML Developer',
     description:
-      'Explore projects, interactive tools, and hackathon milestones built by Arin Gupta.',
+      'Explore full-stack web applications, dependable backend systems, and applied machine learning projects built by Arin Gupta.',
     siteName: 'Arin Gupta Developer Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arin Gupta — Full-Stack Developer',
+    title: 'Arin Gupta — Software Engineer & AI/ML Developer',
     description:
-      'Full-stack developer building clean web apps and practical software tools.',
+      'Software engineer & AI/ML developer building clean web apps and applied machine learning tools.',
     creator: '@arin_gupta',
   },
   robots: {
@@ -78,15 +81,19 @@ const jsonLd = {
       '@type': 'Person',
       '@id': 'https://github.com/arin-gupta06#person',
       name: 'Arin Gupta',
-      jobTitle: 'Full-Stack Developer',
+      jobTitle: 'Software Engineer & AI/ML Developer',
       url: 'https://github.com/arin-gupta06',
       sameAs: [
         'https://github.com/arin-gupta06',
         'https://linkedin.com/in/arin-gupta',
       ],
       knowsAbout: [
-        'Full-Stack Web Development',
+        'Software Engineering',
         'Artificial Intelligence',
+        'Machine Learning',
+        'PyTorch',
+        'Transformers',
+        'Full-Stack Web Development',
         'React',
         'Next.js',
         'TypeScript',
@@ -102,7 +109,7 @@ const jsonLd = {
       url: 'https://arin-gupta.dev',
       name: 'Arin Gupta — Developer Portfolio',
       description:
-        'Full-stack developer building clean, fast web apps and practical software tools.',
+        'Software engineer & AI/ML developer building clean web apps and applied machine learning tools.',
       publisher: {
         '@id': 'https://github.com/arin-gupta06#person',
       },

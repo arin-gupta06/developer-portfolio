@@ -281,28 +281,6 @@ export default function ProjectsSection() {
       >
         {/* ================= SECTION HEADER ================= */}
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              backgroundColor: 'rgba(129, 140, 248, 0.08)',
-              border: '1px solid rgba(129, 140, 248, 0.25)',
-              color: '#818cf8',
-              fontSize: '11px',
-              fontWeight: 700,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              marginBottom: '14px',
-              fontFamily: 'Space Grotesk, sans-serif',
-            }}
-          >
-            <Sparkles size={13} />
-            <span>SELECTED REPOSITORIES</span>
-          </div>
-
           <h2
             style={{
               fontSize: 'clamp(32px, 4vw, 48px)',

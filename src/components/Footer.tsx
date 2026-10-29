@@ -101,7 +101,7 @@ export default function Footer() {
               </span>
             </div>
             <p style={{ fontSize: '13px', color: '#64748b', margin: 0, maxWidth: '340px' }}>
-              Full-stack developer building clean, fast, and thoughtful web experiences.
+              Software developer &amp; AI/ML engineer building clean, dependable digital systems.
             </p>
           </div>
 

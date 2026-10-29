@@ -15,7 +15,7 @@ A modern, high-performance developer portfolio and interactive digital monograph
   - **Software Developer Intern** (*ByteEdu • 2024*)
   - **AI / ML Intern** (*DecodeLabs • 2024 - 2025*)
   - **Open Source Contributor** (*Nexus Spring of Code [NSoC] • 2024*)
-- **Integrated Resume System**: One-click direct PDF download (`Arin_Gupta_Resume.pdf`) available across desktop and mobile navigation.
+- **Dual-Track Resume System**: Dropdown selector providing direct downloads for both Software Engineering (`Arin_Gupta_Software_Resume.pdf`) and AI/ML Developer (`Arin_Gupta_AI_ML_Resume.pdf`) tracks across desktop and mobile navigation.
 - **Bespoke Aesthetics**: Frameless floating navigation, rich glassmorphic layers, custom typography (Plus Jakarta Sans & Space Grotesk), and zero generic UI templates.
 
 ---
